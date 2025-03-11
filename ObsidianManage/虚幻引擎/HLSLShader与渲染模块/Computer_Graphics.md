@@ -824,6 +824,65 @@ $$
 
 ## Class Ⅴ .  Rasterization One
 
+#### 一. 光栅化的概念 :
+
+- 当场景中的视角通过变换 ,  处于正交投影 ,  我们该如何把他绘制在屏幕上 ?  这就是光栅化的作用 .
+
+#### **二. 如何定义Perspective Projection的field(视椎) ?**
+
+- 1) 宽高比 width , height .
+- 2) Vertical Field of View :  垂直视野 ,  相机垂直于 `width` 的边的夹角 .  简称 fov .
+
+>知道宽高比 , 垂直视野 ,  可求出水平视野 .
+
+
+**1. $fov$求解公式 :
+
+- Camera 的原点与近平面的距离为$n$ ,  近平面的高度一半( z轴坐标的绝对值 )定义为$t$ ,  则$fov$等于 :
+
+$$
+\tan\frac{fovY}{2} = \frac{t}{abs(n)}
+$$
+
+
+#### 三. Screen and Screen Space
+
+**1. Screen 的概念 :**
+
+- Screen 在计算机中实际上是二维数组 ,  按像素有序排列 .  K则表示像素的多少 .  而屏幕也是典型的光栅成像设备 .  
+
+- Raster = Screen in German ,  Raster 光栅化是德语的屏幕意思 .
+	- Rasterize == Drawing onto the Screen .
+
+- Pixel ( 简写 ,  short for "Picture element" )
+	- Color is a mixture of (red , green , blue)
+
+**2. Screen Space :**
+
+- 屏幕的左下角为屏幕的原点 ,  像素的Index均写成(x , y) 注意 ,  0为第一位 .
+- 对于每个像素的中心 ,  应统一为 (x + 0.5 , y + 0.5) ,  也就是像素的右上角上 .
+- 我们认为屏幕像素的坐标应该为 (0 , 0) to (width , height) .
+
+
+**3. Canonical Cube to Screen :**
+
+- 将标准立方体变换至匹配Screen :
+$$
+M_{viewport}\;=\;
+\begin{bmatrix}
+\frac{width}{2}&0&0&\frac{width}{2}\\
+0&\frac{height}{2}&0&\frac{height}{2}\\
+0&0&1&0\\
+0&0&0&1
+\end{bmatrix}
+$$
+- 缩放正确的倍率后 ,  将中心移动至原点 .  此变换矩阵z轴不参与运算 .
+
+**四. 现代显示器的运行原理 :**
+
+- 通过 内存/显存 里特定的区域 ,  将其映射到屏幕上 .  这是现代显示器常见的显示方式 .  
+
+
 
 ## Class Ⅵ .  Rasterization Two
 
