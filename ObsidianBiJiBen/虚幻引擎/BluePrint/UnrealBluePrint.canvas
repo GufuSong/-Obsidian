@@ -1,0 +1,13 @@
+{
+	"nodes":[
+		{"id":"b495e5a085a7e757","x":-311,"y":-108,"width":250,"height":60,"type":"text","text":"UnrealBluePrint"},
+		{"id":"fda2acf2ec81791e","x":57,"y":-323,"width":250,"height":60,"type":"text","text":"变量与容器"},
+		{"id":"4b9498850bb56bf4","x":400,"y":-462,"width":250,"height":60,"type":"text","text":"基础变量"},
+		{"id":"4fb6d2838f21380a","x":763,"y":-600,"width":357,"height":124,"type":"text","text":"2.1.1 布尔BOOL\n\n* 常用于搭配判断语句."}
+	],
+	"edges":[
+		{"id":"00f9c9dd8c05aa30","fromNode":"b495e5a085a7e757","fromSide":"right","toNode":"fda2acf2ec81791e","toSide":"left"},
+		{"id":"c6611741e90fc983","fromNode":"fda2acf2ec81791e","fromSide":"right","toNode":"4b9498850bb56bf4","toSide":"left"},
+		{"id":"5a0cb1dc05eee56d","fromNode":"4b9498850bb56bf4","fromSide":"right","toNode":"4fb6d2838f21380a","toSide":"left"}
+	]
+}
