@@ -706,7 +706,7 @@ $$
 
 - 将此过程使用矩阵来表达 :
 	- 假设一个矩阵 :  $M_{view}\;=\;R_{view}\;T_{view}$ 
-	- 将位置转换至原点 :
+	- 将位置转换至原点 : 
 $$
 T_{view}=
 \begin{bmatrix}
@@ -736,13 +736,90 @@ $$
 
 - Orthographic Projection :  正交投影
 	- 把Camera 理解为一个面 ,  形成方形体 .  将此方体内的所有物品投影至一锥体的横截面上 .
+	- 将像素与Camera平面连接 , 连线穿过Camera的平面 ,  所穿过的交点即为像素的显示点
 
 - Perspective Projection :  透视投影 .
 	- 把Camera 理解为一个点 ,  形成四棱锥 .  将此锥内的所有物品投影至一锥体的横截面上 .
+	- 将像素与Camera原点连接 , 连线穿过Camera的平面 ,  所穿过的交点即为像素的显示点
+
+### 四. Orthographic Projection
+**2. 在计算机上实现Orthographic Projection :**
+
+- 1) 理论做法 :
+
+	- Camera 放在原点 ,  看向-z ,  模型坐标的(0,0,1)指向Y轴方向 ;
+	- Drop Z coordinate ;
+	- 将数据 Translate and Scale 至原点为中心 ,  `[-1,1]` 的正方形平面上 .
+
+- 2) 正式做法 :
+
+	- 我们定义一个空间中的立方体 ,  `[l , r] [b , t] [f , n]`(右左 , 下上 , 远近); 在数值上 ,  `l < r ; b < t` 但与之相反的是`n < f`(原因为Camera 为看向 -z方向 .  Unreal 看向-x方向. );
+
+	- 将此方体变换至 "canonical cube"(正则立方体)`[-1,1]^3`;
+
+- 3) Orthographic Projection Transformation Matrix :
+
+$$
+M_{ortho}\;
+=\;
+\begin{bmatrix}
+\frac{2}{r-l}&0&0&0\\
+0&\frac{2}{t-b}&0&0\\
+0&0&\frac{2}{n-f}&0\\
+0&0&0&1
+\end{bmatrix}
+\;
+\begin{bmatrix}
+1&0&0&-\frac{r+l}{2}\\
+0&1&0&-\frac{t+b}{2}\\
+0&0&1&-\frac{n+f}{2}\\
+0&0&0&1
+\end{bmatrix}
+$$
+- 将中心移动至原点 ,  然后将XYZ的宽度变换为 2 .  
+
+- 4) 注意点 :
+	- 由于Camera look at -z ,  所以 (n > f ) ;  此原因也是OpenGL API 使用左手坐标系的原因 .
+	- 暂时不考虑旋转变换 .
 
 
-**2. 正交投影的方法 :**
+### 五. Perspective Projection
 
+**1. 回顾齐次坐标系 :**
+
+- 在齐次坐标系中，一个点 `(x,y,z,w)` 的第四个分量 `w` 只要不为零，就可以表示一个顶点 .  具体来说：
+
+	1. **w≠0**：此时点` (x,y,z,w)` 可以转换为三维空间中的点 $(\frac{x}{w},\frac{y}{w},\frac{z}{w})$因此，w 不为零时，该齐次坐标代表一个有效的顶点。
+    
+	2. **w=1**：这是最常见的情况，因为此时齐次坐标`(x,y,z,1)` 直接对应三维空间中的点 `(x,y,z)`，计算更简便 .
+
+**2. 透视投影与正交投影的关系 :**
+
+- 透视投影的几何概念 :  从一个点开始 ,  向远处的平面延伸出为一个四棱锥 Frustum.  其中地面f大于相机面n.
+
+- 正交投影的几何概念 ：一个 Cuboid .
+- 那么 ,  透视投影的远平面 ,  缩小至与近平面相等大小 ,  转换为正交投影 ,  这样 ,  即可更简单的将投影投影至进平面 .
+
+**3. 透视投影转化为正交投影 :**
+
+- camera视角有近平面 n ,  远平面 f .  透视投影下 ,  f > n .  我们只需要将 f  进行缩放 ,  缩放至与 n 的大小相当 ,  即可转化为正交投影 .
+
+- 在缩放的过程中 ,  有以下特性 :
+	- 近平面 n 保持不变 .  
+	- 远平面 f 的中点不受缩放影响 .
+
+**4. Camera 渲染范围内所有顶点的 $M_{persp->ortho}$ 透视->正交的计算矩阵 .
+$$
+M_{perp->ortho}\;
+=\;
+\begin{bmatrix}
+n&0&0&0\\
+0&n&0&0\\
+0&0&n+f&-nf\\
+0&0&1&0
+\end{bmatrix}
+$$
+>n 是顶点的-z 轴坐标 (Unreal的-x轴) , f 是 Camera 的远平面中心点z轴坐标 .
 
 
 ## Class Ⅴ .  Rasterization One
