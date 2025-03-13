@@ -202,6 +202,7 @@
 - 虚幻自带Curve工具 ,  使用 Curve Atlas 可以对Curve进行烘焙 .
 - 烘焙的贴图在材质系统中使用 `CurveAtlasRowParameter`进行使用 .
 
+>每帧赋值会造成较大消耗 .
 ### 1.8 顶点着色器
 
 **1.`WPO World Position Offset`世界位置偏移**
@@ -226,6 +227,59 @@
 **一. 切线空间 :**
 
 - 切线空间是一个坐标空间，由顶点所构成的平面的 UV 坐标轴以及表面的法线所构成，一般用 T (Tangent), B (Bitangent), N (Normal) 三个字母表示，即 切线，副切线，法线。在切线空间中，坐标原点就是顶点的位置，一个坐标轴是该顶点本身的法线方向（N），另外两个坐标轴就是和该点相切的两条切线。切线空间在法线贴图中有着重要作用，通常需要把灯光转换到切线空间进行计算。
+
+### 1.11 Decal 纹理投射工具
+
+**一. 创建Decal Material :**
+
+**1. 注意 :**
+
+- `Decal`只支持`Deferred Decal`材质作用域 , 并需要将`Blend Mode` 更改为:`Translucent`
+- 当使用此模式时 ,  可自定义Decal Blend Mode .  并选择需要影响的材质接口 .
+
+>在游戏制作中 ,  Decal 在地形编辑上使用的较多 .  在一定程度上较为节省性能 .
+
+
+**二. Decal 的 Details( 参数 ) :**
+
+**1. Decal Fade :**
+
+- `Fade Start Delay` :  从此 `Deca` 生成时 , 到进入前所需时间 .
+- `Fade in Duration` :  开始运行后 ,  进入时所需的时间 .
+- `Fade Duration` :  总生命时间  .  注意 ,  与`Fade in Duration`有一定耦合性 .
+- `Fade in Start Delay` :  延迟运行时间 ,  单位s .
+
+> 这些值默认为 1 ,  如果输入0 ,  也会按照1 计算 .
+
+**2. 用法套路 :**
+
+- 由于这几个变量之间过于耦合 ,  在使用时 ,  我们只会使用`Fade Start Delay`与`Fade in Duration` ,  这样`Material`的接口`Decal LifeTime Opacity` 可以线性输出 0 - 输入值 ;  搭配Curve 即可完整使用 .
+
+
+**三. Decal 的 Material 接口 :**
+
+**1. `Decal LifeTime Opacity` 
+
+- 作用 :
+	- 输出`[0,1]`值域的常数 ,  根据`Fade in Duration`输出进入时的单位时间 ,  再根据`Fade Duration`输出死亡时的单位时间 .
+
+
+**四. Decal 的BluePrint 接口 :**
+
+**1. `Add Decal Component`添加Decal**
+
+### 1.12 材质与BluePrint的交互
+
+**一. 动态材质实例交互 :**
+
+**1. `Create Dynamic Material Instance`创建动态材质实例**
+
+- 作用 :
+	- 可以搜索虚幻内的Material 并创建相应的材质实例 .
+- 参数列表 :
+	- Parent :  输入材质名 ( 一个字母都不能错 ) .
+
+**2. `Set Vector Parameter Value`设置矢量参数
 ## 第二部分: 纹理 ,  纹理采样以及UV
 
 ### 2.1 `TextureCoordinate` `TestureObject` 纹理, 纹理采样, UV坐标
@@ -864,6 +918,11 @@ float OpacityBasedDepthFade(float FadeDistanceA, float FadeDistanceB, PixelAlpha
 
 - 作用 :
 	- 根据屏幕像素作为UV采样 ,  使模型上每个像素都输出不同的值 .  常用于产生模糊效果 .
+
+### 6.7 `WorldAlignedTexture`世界对齐纹理
+
+- 作用 :
+	- 脱离UV将纹理映射在模型上 .  
 ## 第八部分: 后期处理材质
 
 ### 7.1 `SceneTecture`后期纹理
