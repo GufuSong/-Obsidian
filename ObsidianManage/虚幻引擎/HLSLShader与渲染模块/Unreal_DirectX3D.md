@@ -960,16 +960,45 @@ float OpacityBasedDepthFade(float FadeDistanceA, float FadeDistanceB, PixelAlpha
 **二. 使用须知 :**
 
 - 此函数有旋转Bug ,  并且无法修复 ,  请注意使用 .
+
+---
 ## 第八部分: 后期处理材质
 
-### 7.1 `SceneTecture`后期纹理
+### 7.1 `PostProcess`后期处理的概念
+
+**一. 介绍后期处理 :**
+
+**1. 什么是后处理 ?**
+- 后处理是渲染管线的最后一步流程 .  因此 ,  能够访问的数据也是最多的 .  
+
+**2. 后期处理的功能 :**
+
+- 自由的调色 .  甚至可以在透明物体渲染之前对齐的进行调色 ,  从而避免调色带来的影响 .
+
+**3. 后期处理的Details :**
+
+- `Exposure`曝光
+	- `Min Brightness`: 最小曝光度 .
+	- `Max Brightness`: 最大曝光度 .
+
+
+**二. Post Process Material :**
+
+**1. `Blendable Location` 渲染管线混合位置
+
+- `After Tonemapping`: 色调映射之后 .
+
+---
+### 7.2 `SceneTecture`后期纹理
+
+**一. 节点介绍 :**
 
 - 作用 :
 	- 将后期渲染完成的数据作为纹理直接输入至材质中 .
 	- 此节点仅在Post Process模式中生效 .
 
 - 常用的数据纹理 :
-	- `PostProcessInput` 屏幕颜色
+	- `PostProcessInput` 屏幕颜色 ,  输出四维矢量 .
 	- `WorldNormal` 像素的世界法线 .
 	- `SceneDepth` 场景深度
 
@@ -977,6 +1006,7 @@ float OpacityBasedDepthFade(float FadeDistanceA, float FadeDistanceB, PixelAlpha
 >	使用快捷键 `Ctrl + Shift + ,`激活此面板 .  作用为查看当前帧的渲染流程 .
 
 >请记得将`Post Process Material` 的 `Blendable Location` 混合矢量进行修改 .  发生抖动错误时 ,  将`Blendable Location` 更改为 `Before Tonemapping`
+
 
 # Ⅱ. HLSL 图形编程
 
@@ -1550,7 +1580,7 @@ retuen F1.A;
 
 ---
 
- ### 7.1 discard 丢弃像素
+### 7.1 discard 丢弃像素
 
 * 将此shader内所有的像素丢弃掉.
 * 丢弃掉的像素视图上呈现灰色.
