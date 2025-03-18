@@ -180,7 +180,7 @@ UEngine::AddOnScreenDebugMessage
 - 表示字符串
 
 
-**二. Unreal 内置变量 :**
+### 2.2 Unreal 内置变量 :
 
 **1.`int8`
 
@@ -192,3 +192,26 @@ UEngine::AddOnScreenDebugMessage
 **2.`int16`
 
 - 本质为`int` ,  32位 4 个字节 .  `typedef signed short int	int16;` 
+
+**3. `int 32`**
+
+- 普通的有符号int
+
+**4. `int64`**
+
+- 值域更大的整形 .  赋值尾缀后常加 ll .  
+
+**5. `ANSICHAR` 字符串 :**
+
+- 窄字符串
+
+**6. `WIDECHAR`宽字符串 :**
+
+
+
+**二. 变量标识符 :**
+
+**1. `u`无符号:**
+
+- 代表正数无符号范围 .
+

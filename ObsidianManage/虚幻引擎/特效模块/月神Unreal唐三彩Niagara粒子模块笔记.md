@@ -244,7 +244,8 @@ void Beziertlocation(vercor){
 
 **1. 工作须知 :**
 
-
+* 在粒子系统中创建的每一个发射器都需要继承自一个父级. 也就是 NiagarEmitter .
+* 
 
 
 

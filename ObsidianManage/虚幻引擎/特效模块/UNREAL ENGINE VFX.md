@@ -986,6 +986,234 @@ $$
 
 ##### 4.1.4 属性输出节点
 
+###### 一. `Execution Index`输出索引
+
+- 输出粒子的索引属性 ,  注意搭配其他节点使用 
+
+- 算法扩展 :
+	- 使用乘法可以获得间隔输出的效果 .
+
+
+##### 4.1.5 粒子释放
+
+###### 一. **`Make Spawn Info`粒子释放**
+
+- 作用
+	- 生成粒子
+- 参数列表 ;
+	- Count :  发射个数 , 输入uint
+- 返回值 :
+	- Output :  返回粒子的类 .
+
+
+#### 4.2 数学节点
+
+##### 4.2.1 基础运算
+
+###### 一. `Less Than`小于
+
+
+###### 二. **`Greater Than`大于**
+
+
+###### 三. **`Add`加法**
+
+
+###### 四. **`Subtract`减法**
+
+
+
+##### 4.2.2 进阶运算
+
+###### 一. 矢量运算
+
+**1. `Make::Vector`实数合成矢量
+
+**2. `Break::Vector`矢量结构实数**
+
+**3. `Reflect Vector`反射运算**
+
+**4. `Lengh`求模**
+
+**5. `Direction and Length`方向和长度(不兼容0)** 
+-  注意 :  当他的数值为0时,  会导致本节点输出非有效值 .
+
+**6. `Direction and Length Safe`兼容0的方向与长度**
+- 注意 :  内置if语句判断长度是否合法 .  当不合法时输出 `Fallback`
+
+**7. `Transform Position`位置坐标系变换**
+- 作用 :
+	- 输入矢量 ,  将此矢量的坐标系转化为目标坐标系 .
+
+- 参数列表 :
+	- `InPosition`: 输入需要被转换的数量
+	- `Source Space`: 本身坐标系
+	- `Destianstion Space`: 目的坐标系
+
+- 返回值 :
+	- `OutPosition`: 输出被转换后的坐标系.
+
+
+###### 二. 线性插值
+
+**1. `Remap Range`根据设定的最大与最小值输出相应的线性插值**
+- 参数列表
+	- `Input Min` 输入最小值
+	- `Input Max` 输入最大值
+	- `Output Min` 输出最小值
+	- `Output Max` 输出最大值
+
+##### 4.2.3. 属性与变量节点
+
+###### 一. `Static Mesh`静态网格体
+
+**1. `Random Triangle` 随机读取三角面**
+* 作用 :
+	* 随机读取Mesh的一个三角面
+* 参数列表 :
+	* ==`StaticMesh`== :  输入一个讲题网格体
+	* ==`RandomInfo`== :  输入随机信息 . 注意, 使用`Make Niagara Rand Info`节点可以创建随机变量信息
+
+* 输出信息 :
+	* ==`Triangle`== :  三角面 .
+	* ==`BaryCoord`== :  三角面上相对坐标 .
+
+
+**2. `Get Triangle`读取三角面信息**
+- 作用 :
+	- 接受模型单个三角面之后 ,  返回三角面上相应的信息 .
+- 参数列表 :
+	- ==`StaticMesh`== 
+	- ==`Triangle`==
+	- ==`BaryCoord`==
+- 输出信息 :
+	- ==`Position`== :  位置矢量
+	- ==`Normal`== :  法线信息
+	- ==`Tangent`== :  切线信息
+	- ==`Velocity`== :  速度矢量信息
+	- ==`Bitangent`== :  双切线 .
+
+**3. `get Triangle UV`读取三角面UV坐标**
+- 作用 :
+	- 读取三角面上指定像素的UV信息 .
+- 参数列表 :
+	- ==`StaticMesh`==
+	- ==`Triangle`==
+	- ==`BaryCoord`==
+	- ==`UV Set`== :  UV集选择
+- 返回值 :
+	- ==`UV`== :  二维坐标 .
+
+
+###### 二. `Spline`路径曲线
+
+- 制定方法 :
+	- 在蓝图里新建曲线组件 .   将Spline属性暴露到`User Exposed`上 .  在Level 中 ,  使用笔工具将组件绑定到属性中 .
+
+
+
+**1. `Sample Spline Position by Unit Distance WS`采样曲线与U方向运动单位获取位置世界坐标**
+- 作用 :
+	- 输入曲线与 单位距离 ,  输出曲线上的坐标
+
+- 参数列表 :
+	- `Spline` :  曲线
+	- `U` :  输入单位 .
+
+- 返回值 :
+	- `Position`
+
+
+**2. `Sample Spline Direction by Unit Distance WS`采样曲线与U方向运动单位获取路径前进方向矢量 世界坐标**
+- 作用 :
+	- 输入曲线与 单位距离 ,  输出曲线前进方向的矢量
+
+- 参数列表 :
+	- `Spline` :  曲线
+	- `U` :  输入单位 .
+
+- 返回值 :
+	- `Direction`
+
+
+**3. `Sample Spline Right Vector by Unit Distance WS`采样曲线与U方向运动单位获取路径前进方向矢量 世界坐标**
+- 作用 :
+	- 输入曲线与 单位距离 ,  输出曲线点右侧方向的矢量 ( 粒子的X轴方向 .)
+
+- 参数列表 :
+	- `Spline` :  曲线
+	- `U` :  输入单位 .
+
+- 返回值 :
+	- `RightVector`
+
+
+###### 三. `Particle Attribute Reader`粒子属性阅读器
+- 读取系统内所有存在粒子的属性 .
+
+
+**1. `Get Vector by Index`基于发射器和Index获取矢量信息**
+
+- 参数列表
+	- `Particle Reader` :  输入Particle Attribute Reader
+	- `Particle Index` :  输入Index . 可输入节点`Execution Index` 
+	- `Attribute` :  输入要读取的属性 .
+
+- 返回值
+	- Value :  返回的Vector
+
+- 使用须知 :
+	- 要在模块参数面板要读取粒子Index的发射器
+
+
+###### 四. `Position`位置
+
+- 标头 : `PARTICLES`
+	- 储存粒子的坐标位置
+	- 注意 ,  当发射器坐标系为Location Space时 ,  储存粒子的局部坐标.反之, 反之 .
+
+- **`ENGINE`,`OWNER`**
+	- 储存引擎的世界坐标位置 .
+
+###### 五. **`CurlNoise`噪波场**
+
+- 作用 :
+	- 值域范围`[-1,1]` ,  根据输入的不同位置矢量 ,  输出随机的不同值 .  可以把它理解为三维的噪波贴图.
+
+
+**1. `Sample Noise Field`采样噪波场**
+
+- 作用 :
+	- 根据输入不同的矢量 ,  采样像样噪声场的数值 .
+
+- 参数列表 :
+	- `Vector`: 输入矢量 .
+
+
+###### 六. **`CameraQuery`相机读取**
+
+
+**1. `Get Camera Properties`获取相机属性**
+
+- 返回值:
+	- `Camera Position World`: 相机世界位置
+	- `Forward Vector World`: 相机朝向位置
+	- `Up Vector World`: 相机正上方矢量位置 .
+	- `Right Vector World`: 相机右侧矢量.
+
+- 使用须知 :
+	- 此节点更适用于GPU .
+
+
+###### 七. **`Curve`曲线**
+- 注意, 自定义模块中的Curve没有自带的X轴变量, 需要新建变量并搭配Sample curve节点.
+
+
+**1. `Smaple Curve`曲线采样**
+- 作用:
+	- 输气曲线与X轴的值, 输出对应的Y值.
+
+
 
 ## Ⅲ  DirectX Shader
 
