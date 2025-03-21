@@ -55,7 +55,7 @@
 		{"id":"123510707352bb7d","type":"text","text":"**`Box Location`方体位置**\n\n- 参数 :\n\t- Surface Only Band Thickness :  仅在表面生成 .\n\n- 使用须知 :\n\t- 注意 ,  此模块在UE5以上的版本被弃用 .  并不支持GPU发射器","x":2560,"y":1490,"width":647,"height":270,"color":"1"},
 		{"id":"658f9783a62f9db7","type":"text","text":"**`Sprite Rotation Rate`粒子旋转速率**\n\n- 作用 :\n\t- 令粒子旋转 .  注意是Alignment旋转 .\n- 使用须知 :\n\t- 速率的正反决定旋转的方向 ,  可以利用此特性避免同质化 .","x":1384,"y":4316,"width":399,"height":264,"color":"1"},
 		{"id":"152560bdac51b13d","type":"text","text":"**`Sprite Rotation Rate`粒子旋转速率**\n\n- 作用 :\n\t- 令粒子旋转 .  注意是Alignment旋转 .\n- 使用须知 :\n\t- 速率的正反决定旋转的方向 ,  可以利用此特性避免同质化 .","x":1615,"y":4660,"width":399,"height":264,"color":"1"},
-		{"id":"031979b5b829408a","x":2040,"y":2400,"width":570,"height":240,"color":"1","type":"text","text":"**`Inherit Velocity`继承速度**\n\n- 作用 :\n\t- 粒子生成时读取物体的移动速度 ,  并将此速度加到新生成了粒子上 .\n\n- 参数列表 :\n\t- `Velocity Scale`: 速度倍率.\n\t- `Velocity Limit`: 最大速度限制 ."}
+		{"id":"031979b5b829408a","type":"text","text":"**`Inherit Velocity`继承速度**\n\n- 作用 :\n\t- 粒子生成时读取发射器的移动速度 ,  并将此速度加到新生成了粒子上 .\n\n- 参数列表 :\n\t- `Velocity Scale`: 速度倍率.\n\t- `Velocity Limit`: 最大速度限制 .","x":2040,"y":2400,"width":570,"height":240,"color":"1"}
 	],
 	"edges":[
 		{"id":"b7ce33ab1f3109a9","fromNode":"da96c257bf1cd58a","fromSide":"left","toNode":"d15ccbe6db0b0117","toSide":"right"},

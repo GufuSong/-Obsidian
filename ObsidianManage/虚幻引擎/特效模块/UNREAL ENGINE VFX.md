@@ -84,17 +84,55 @@ tags:
 
 
 
-**2. Emitter Properties的属性 :**
+**二. Emitter Properties的属性 :**
 
-* `Emitter`:
+**1. `Emitter`:**
+
   * `Local Space`: 是否使用对象坐标系. 
   * `Determinism`: 是否固定发射器的随机 .
   * `Random Seed`: 随机种子
   * `Sim Target`: 设置粒子运行方式 ,  CPU或GPU .
+  * `Fixed Bounds`:  剔除包围盒 .
+
+**2. `Simulation Stages` 仿真阶段 :**
+
+- `Enable Simulation Stages`:  是否启用 `Generic Simulation Stage` ;
+
+**三. Stage 自定义逻辑 :**
+
+**1. `Event Handler` 事件处理器**
+
+- **用途** :
+	- **响应待定事件:** 当粒子系统触发预设的事件（如 `Spawn`、`Death`、`Collision` 等）时 ,  执行对应的逻辑 .
+
+- **调用规则 :**
+	- **事件驱动 :**
+		- 仅在事件被触发时执行 ,  例如：`Spawn` 事件在粒子生成时触发一次；`Collision` 事件在每次碰撞时触发 .
+
+	- **被动执行 :**
+		- 逻辑的执行依赖于外部事件的发生。
+
+>使用场景 :
+>    - 粒子遭受撞击后 ,  变换为燃烧状态 .  
+
+**2. `Generic Simulation Stage` 通用模拟阶段**
+
+- **用途 :**
+	- **插入自定义模拟逻辑**：在粒子模拟的标准流程中插入额外的计算步骤。
+
+- **执行顺序 :**
+	- 在粒子每帧调用后运行 .
+	- **每帧执行**：无论事件是否发生，都会在每帧的模拟流程中运行。
 
 
-**3. Warmup 预热解算 **
+>使用场景 :
+>    - 在粒子更改状态之后 ,  执行新的粒子燃烧状态下的逻辑 ,  如散发火焰等 .
+
+
+**四. Warmup 预热解算 **
 - Warmup Time :  预热时间 .  注意 ,  GPU不支持预热 .
+
+
 
 ---
 
@@ -438,6 +476,17 @@ $$
 **二. 使用须知 :**
 
 - 如果出现由于Mass的质量导致大小物体间的速度差距过大 ,  这是由于Mass = 体积 * 密度, 而体积是一个Exp^3的值, 因此 ,  我们只要将他的Mass ^ 1/3 即可解决此问题 .
+
+#### C 1.12 变量前缀
+
+**一. 解释变量前缀 :**
+
+**1. STACKCONTEXT :**
+
+- 根据目前的阶段 ,  绘制在当前运行的stack (堆栈内存区 ) 上 .  
+
+
+
 
 ### Part 2. Niagara 系统模块库
 
@@ -1214,6 +1263,12 @@ $$
 	- 输气曲线与X轴的值, 输出对应的Y值.
 
 
+###### 八. `Grid 2D Collection` 2D矩阵集合
+
+**1. 什么是`Grid 2D` ?**
+
+- 类似加强版的 Render Texture ,  类似二维数组 .  
+
 
 ## Ⅲ  DirectX Shader
 
@@ -1352,6 +1407,20 @@ $$
 - 在虚幻引擎中 ,  RGB 三通道的质量不同 ,  Green的质量为最高的 .
 
 - Unreal 光源传播的规则为反比例传播 ,  距离越近 ,  光源能量无限最大 .  随着距离的传播 ,  能量迅速减弱 .
+
+# HLSL Module
+
+## Ⅰ. Unreal Niagara Module 中的全局变量
+
+### Ⅰ . 1 Vertex Shader Transform Matrix 
+
+**一. `View`视图Transform
+
+**1. `View.WorldToClip`**
+
+- 作用 :
+	- 世界坐标空间 - 裁剪坐标空间 ;  注意 ,  其使用其次坐标系 .  裁剪坐标空间也是标准正方体空间 .  坐标处于三维空间 .
+
 
 
 

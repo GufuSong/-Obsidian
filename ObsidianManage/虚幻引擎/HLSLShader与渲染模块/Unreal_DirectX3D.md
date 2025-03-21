@@ -294,8 +294,61 @@
 >使用 SD 混合制作 .
 
 
+### 1.14 `ExponentialHeightFog`指数级高度雾
 
 
+**一. Detail :**
+
+**1. `Volumetric Fog` 体积雾**
+
+- `Albedo` :  反射率 ,  输入雾的固有色 .
+- `Emissive` :  自发光 .  通常不使用 .
+- `Extinction Scale` :  体积雾浓度调整 .
+- `View Distance` :  体积雾影响距离 .  在GPU Visualizer中 ,  可以查看体素的渲染距离 .
+
+**二. `ExponentialHeightFog Material`**
+
+**1. 使用须知 :**
+
+- 需要将 `Material Domain` 更改为 `Volume` .
+- 需要将 `Blend Mode` 更改为 `Additive` .
+- 当此材质被赋予至静态网格体上使用时 ,  默认调用该物体的 AABB包围盒范围 .  
+
+>此材质是三维信息材质 ,  输出体素的信息 .
+
+
+**2. 模式参数 :**
+
+- `Albedo` :  基础色 .
+- `Emissive Color` :  自发光颜色 .
+- `Extinction` :  浓度 ,  输入常量 .  但无法超过物体AABB包围盒的边界 .
+- `Ambient occlusion` :  环境光遮蔽 .
+
+>体积雾本身不会造成巨大的性能消耗 ,  但灯光打在体积雾上会造成较大的性能消耗 .
+### 1.15 RenderTexture2D 渲染纹理2D
+
+**一. 基础介绍Render Texture 2D :**
+
+**1. 基础功能 :**
+
+- 将场景里的指定区域渲染在一张图上 .
+- 实时记录一些信息 .
+
+**2. 什么是Render Texture :**
+
+- 本质为纹理对象 ,  但是可以通过程序编辑纹理 .
+- 打破的静态纹理的限制 .
+
+**3. 使用场景 :**
+
+- 使用 `Scene Capture Component 2D` 组件进行实时绘制 .
+- 记录图形信息 .
+
+**二. Details说明 :**
+
+- `Texture Render Target 2D`
+	- `Size X` :  x 轴分辨率 .
+	- `Size Y` :  y 轴分辨率 .
 ## 第二部分: 纹理 ,  纹理采样以及UV
 
 ### 2.1 `TextureCoordinate` `TestureObject` 纹理, 纹理采样, UV坐标
@@ -836,7 +889,7 @@ float Fade = saturate(DepthDelta / FadeDistance); //由于数值过大,需要将
 	- Opacity :  输入原本透明度
 	- Fade Distance :  控制插值阈值 ,  值越大 ,  平滑范围越大 .
 
-### 5.12 `Noise`噪音生成
+### 5.12 `Noise` `Vector Noise`噪音生成
 
 - 作用 :
 	- 生成一张噪波贴图 .
