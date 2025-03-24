@@ -236,6 +236,7 @@
 
 - `Decal`只支持`Deferred Decal`材质作用域 , 并需要将`Blend Mode` 更改为:`Translucent`
 - 当使用此模式时 ,  可自定义Decal Blend Mode .  并选择需要影响的材质接口 .
+- `Decal`可以将网格体做为载体 .  在网格体投射在屏幕的范围内 ,  深度大于网格体的像素将会被`Decal`影响 .
 
 >在游戏制作中 ,  Decal 在地形编辑上使用的较多 .  在一定程度上较为节省性能 .
 
@@ -1042,13 +1043,13 @@ float OpacityBasedDepthFade(float FadeDistanceA, float FadeDistanceB, PixelAlpha
 - `After Tonemapping`: 色调映射之后 .
 
 ---
-### 7.2 `SceneTecture`后期纹理
+### 7.2 `SceneTexture`后期纹理
 
 **一. 节点介绍 :**
 
 - 作用 :
 	- 将后期渲染完成的数据作为纹理直接输入至材质中 .
-	- 此节点仅在Post Process模式中生效 .
+	- 此节点仅在`Post Process` ,  `Surface::Default Lit`模式中生效 .
 
 - 常用的数据纹理 :
 	- `PostProcessInput` 屏幕颜色 ,  输出四维矢量 .
