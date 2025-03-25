@@ -55,22 +55,23 @@
 		{"id":"902dcef3cc4876fe","type":"text","text":"**`Smaple Curve`曲线采样**\n\n- 作用:\n\t- 输气曲线与X轴的值, 输出对应的Y值.","x":1165,"y":4200,"width":475,"height":220,"color":"1"},
 		{"id":"5bda788fe66a2020","type":"text","text":"**`Grid2D Collection` 2D网格集合**\n\n**一. 作用 :**\n\n- `Grid2D Collection`:  是一个封装了二维网格数据的类 ,  类似二维数组 .\n- 由于多线程并行架构 ,  它还会输出每个元素的行标与列标\n","x":690,"y":4640,"width":460,"height":240,"color":"5"},
 		{"id":"13ceb36c5e2021c1","type":"text","text":"`Set Num Cells`设置数字行数与列数 \n\n- 作用 ：\n\t- 设置`Grid2D`二维数据的行列数据数 ,  类似分辨率的概念 .","x":1263,"y":4621,"width":377,"height":175,"color":"1"},
-		{"id":"28a9e6237bdf0ee0","x":1263,"y":4820,"width":377,"height":180,"color":"1","type":"text","text":"`Execution Index to Unit`输出执行单元索引\n\n- 作用 :\n\t- 离散化输出元素的行标与列标 ,  输出二维矢量.  输出`[0,1]`"},
+		{"id":"28a9e6237bdf0ee0","type":"text","text":"`Execution Index to Unit`输出执行单元索引\n\n- 作用 :\n\t- 离散化输出元素的行标与列标 ,  输出二维矢量.  输出`[0,1]`","x":1263,"y":4820,"width":377,"height":180,"color":"1"},
 		{"id":"c07ae2d1662d9f1d","type":"text","text":"**`Delta Time`帧率时间**\n- 作用 :\n\t- 由于Unreal线程的调用单位为帧 ,  但客户端的帧率并不稳定 ,  因此如果想表达一个对象在一秒内运行100m ,  则需要计算这个对象每帧运行多少米 .  Delta Time 的作用就是根据客户端的帧率将一秒平均分成与客户端帧率匹配的等份 .  如需要计算1s运行100m ,  一帧运行距离等于 `100 * Delta Time`\n\n- 算法 :\n\t- `Delta Time = CurrentFrameTime - PreviousFrameTime`\n\t- `Delta Time = 当前帧时间戳 - 上一帧时间戳`","x":-880,"y":2539,"width":484,"height":360,"color":"5"},
 		{"id":"ff6ed677010617f6","type":"text","text":"**`PhysiceForce`物理力**\n\n- 作用 :\n\t- 进行真实物理模拟时需要的属性.\n$$\nForce = m * a\n$$\n- 使用须知 :\n\t- 此属性前缀为`Transient`(需要勾选全部显示开关) ,  此变量会在每一帧结算后会被系统释放 .  因此每次计算均需要被重新定义. ","x":-292,"y":2527,"width":392,"height":292,"color":"5"},
 		{"id":"329345a627921614","type":"text","text":"**`Velocity`速度**\n- 速度是一个矢量 ,  方向与距离 .","x":-880,"y":2938,"width":276,"height":117,"color":"5"},
 		{"id":"59fd959e3a7c5d2c","type":"text","text":"**`LocalSpace`是否为局部坐标系?**\n- 作用\n\t- 输出布尔型 ,  如果该发射器使用了Local , 则输出True","x":-1480,"y":2539,"width":389,"height":147,"color":"5"},
 		{"id":"0e2413a8665af90b","type":"text","text":"**`ENiagaraCoordinateSpace`Niagara坐标系**\n\n- 作用 :\n\t- 输出发射器使用的坐标系 .  输出枚举型 ,  并非输出矢量","x":-1480,"y":2833,"width":462,"height":222,"color":"5"},
-		{"id":"e392d8a005624208","x":715,"y":5140,"width":410,"height":140,"color":"5","type":"text","text":"`Texture Sample`纹理采样\n\n**一. 作用 :**\n\n- 采样纹理对象信息"},
-		{"id":"a48ab515c750296a","x":1263,"y":5110,"width":377,"height":170,"color":"1","type":"text","text":"`Sample Texture 2D`纹理对象采样\n\n- 作用 ;\n\t- 采样纹理对象的信息 ."},
-		{"id":"58c2c56f4148270d","x":1745,"y":4621,"width":375,"height":175,"color":"1","type":"text","text":"`Set Vector4 Value` 设置4维矢量信息\n\n- 作用 :\n\t- 设置每个元素的信息 .\n- 参数列表 :\n\t- Index X/Y :  输入行标与列标"},
-		{"id":"fa20d81920f62ab9","x":-1480,"y":3170,"width":462,"height":190,"color":"5","type":"text","text":"**TextureRenderTerget** 实例化渲染目标\n\n- 作用 :\n\t- 与外部传输RenderTerget ,  建立在User Exposed ."},
-		{"id":"b2c12f4a93fd4583","x":690,"y":5520,"width":412,"height":561,"color":"5","type":"text","text":"`RenderTerget2D` 2D渲染目标\n\n**一. Details说明 :**\n- `Texture Render Target 2D`\n\t- `Size X` :  x 轴分辨率 .\n\t- `Size Y` :  y 轴分辨率 .\n\n**二. 作用与使用场景 :**\n**1. 作用 :**\n- 将场景里的指定区域渲染在一张图上 .\n- 实时记录一些信息 .\n- 本质为纹理对象 ,  但是可以通过程序编辑纹理 .\n- 打破的静态纹理的限制 .\n\n**2. 使用场景 :**\n- 使用 `Scene Capture Component 2D` 组件进行实时绘制 .\n- 记录图形信息 ."},
-		{"id":"0523ea441f06ab4b","x":1240,"y":5520,"width":320,"height":220,"color":"1","type":"text","text":"`Linear to Index`线性索引\n\n**一. 作用 :**\n- 输入线程索引 `Execution Index` 输出对应线程的像素的二维坐标系坐标(值域为分辨率X ,  分辨率Y)"},
+		{"id":"e392d8a005624208","type":"text","text":"`Texture Sample`纹理采样\n\n**一. 作用 :**\n\n- 采样纹理对象信息","x":715,"y":5140,"width":410,"height":140,"color":"5"},
+		{"id":"a48ab515c750296a","type":"text","text":"`Sample Texture 2D`纹理对象采样\n\n- 作用 ;\n\t- 采样纹理对象的信息 .","x":1263,"y":5110,"width":377,"height":170,"color":"1"},
+		{"id":"58c2c56f4148270d","type":"text","text":"`Set Vector4 Value` 设置4维矢量信息\n\n- 作用 :\n\t- 设置每个元素的信息 .\n- 参数列表 :\n\t- Index X/Y :  输入行标与列标","x":1745,"y":4621,"width":375,"height":175,"color":"1"},
+		{"id":"fa20d81920f62ab9","type":"text","text":"**TextureRenderTerget** 实例化渲染目标\n\n- 作用 :\n\t- 与外部传输RenderTerget ,  建立在User Exposed .","x":-1480,"y":3170,"width":462,"height":190,"color":"5"},
+		{"id":"b2c12f4a93fd4583","type":"text","text":"`RenderTerget2D` 2D渲染目标\n\n**一. Details说明 :**\n- `Texture Render Target 2D`\n\t- `Size X` :  x 轴分辨率 .\n\t- `Size Y` :  y 轴分辨率 .\n\n**二. 作用与使用场景 :**\n**1. 作用 :**\n- 将场景里的指定区域渲染在一张图上 .\n- 实时记录一些信息 .\n- 本质为纹理对象 ,  但是可以通过程序编辑纹理 .\n- 打破的静态纹理的限制 .\n\n**2. 使用场景 :**\n- 使用 `Scene Capture Component 2D` 组件进行实时绘制 .\n- 记录图形信息 .","x":690,"y":5520,"width":412,"height":561,"color":"5"},
+		{"id":"0523ea441f06ab4b","type":"text","text":"`Linear to Index`线性索引\n\n**一. 作用 :**\n- 输入线程索引 `Execution Index` 输出对应线程的像素的二维坐标系坐标(值域为分辨率X ,  分辨率Y)","x":1240,"y":5520,"width":320,"height":220,"color":"1"},
 		{"id":"251564581f93a767","type":"text","text":"`Execution Index`输出索引\n\n**一. 作用 :**\n\n**1. 数据类型 :**\n\n- 输出`uint`无符号整型类型 .\n- 取值范围 :  取值范围为`[0 , N-1]`(N是当前模拟阶段的总数或线程总数) . \n\n**二. 数值输出的依据 :**\n\n- **CPU模拟**\n\t- **行为 :**  在CPU模拟中 ,  `Execution Index`直接对应粒子在粒子缓冲区的索引 .例如 :  系统中有 100 个粒子 ,  则索引范围为 0-99 .\n\t- **顺序 :**  通常是粒子生成顺序或存储顺序 ,  但不能保证严格练习 (粒子死亡时索引会被回收利用 .)\n- **GPU模拟**\n\t- **行为**：在 GPU 模拟中，`Execution Index` 对应 **线程的全局索引**（由 GPU 调度决定）。\n    - 线程索引与粒子索引通常一一对应，但 **不保证严格顺序**（GPU 并行计算的特性可能导致乱序执行）。\n    - 例如：在 GPU 上处理 1024 个粒子时，索引可能为 `0` 到 `1023`，但实际执行顺序不确定。","x":2430,"y":-1960,"width":669,"height":551,"color":"1"},
-		{"id":"171abb9eea8f32bb","x":1240,"y":5793,"width":340,"height":187,"color":"1","type":"text","text":"`Get Render Target Size`获取分辨率\n\n**一. 作用 :**\n\n- 输出Width 与 Height ."},
-		{"id":"a888354232d89d8d","x":1745,"y":4820,"width":415,"height":220,"color":"1","type":"text","text":"`Sample Grid Vector4 Vale`采样4维矢量信息\n\n- 作用 :\n\t- 输入UV信息 ,  返回4维矢量 .\n- Set 与 Sample 的区别 :\n\t- 一个输入的是像素坐标 ,  一个是单位化的插值时间 .\n"},
-		{"id":"9898187685fbd6dd","x":1640,"y":5520,"width":340,"height":220,"color":"1","type":"text","text":"`Set Render Target Value`设置纹理目标信息\n**一. 作用 :**\n\n- 设置Render Target 像素信息 ,  需要输入UV坐标 ."}
+		{"id":"171abb9eea8f32bb","type":"text","text":"`Get Render Target Size`获取分辨率\n\n**一. 作用 :**\n\n- 输出Width 与 Height .","x":1240,"y":5793,"width":340,"height":187,"color":"1"},
+		{"id":"a888354232d89d8d","type":"text","text":"`Sample Grid Vector4 Vale`采样4维矢量信息\n\n- 作用 :\n\t- 输入UV信息 ,  返回4维矢量 .\n- Set 与 Sample 的区别 :\n\t- 一个输入的是像素坐标 ,  一个是单位化的插值时间 .\n","x":1745,"y":4820,"width":415,"height":220,"color":"1"},
+		{"id":"9898187685fbd6dd","type":"text","text":"`Set Render Target Value`设置纹理目标信息\n**一. 作用 :**\n\n- 设置Render Target 像素信息 ,  需要输入UV坐标 .","x":1640,"y":5520,"width":340,"height":220,"color":"1"},
+		{"id":"8c68c0a09ba7b03a","x":1944,"y":-511,"width":486,"height":251,"color":"1","type":"text","text":"`Calculate Random Point in Sphere`随机输出球内的点\n\n**一. 参数列表 :**\n- `Inner Radius`:  内圆半径 .\n- `Outer Radius`:  外圆半径 .\n- `Seed`:  随机种子 .\n**二. 返回值 :**\n- `Output`:  返回位置矢量."}
 	],
 	"edges":[
 		{"id":"7effbe671a5b9419","fromNode":"3ba929e676c9f9e5","fromSide":"right","toNode":"b99ad09ce7c05a7d","toSide":"left"},
@@ -142,6 +143,7 @@
 		{"id":"ad751c0e7ad122e0","fromNode":"b2c12f4a93fd4583","fromSide":"right","toNode":"0523ea441f06ab4b","toSide":"left"},
 		{"id":"1b90cf74e2c27b0c","fromNode":"b2c12f4a93fd4583","fromSide":"right","toNode":"171abb9eea8f32bb","toSide":"left"},
 		{"id":"e58d64e27fc50927","fromNode":"5bda788fe66a2020","fromSide":"right","toNode":"a888354232d89d8d","toSide":"left"},
-		{"id":"f097c091856b4a2c","fromNode":"b2c12f4a93fd4583","fromSide":"right","toNode":"9898187685fbd6dd","toSide":"left"}
+		{"id":"f097c091856b4a2c","fromNode":"b2c12f4a93fd4583","fromSide":"right","toNode":"9898187685fbd6dd","toSide":"left"},
+		{"id":"74b852820c3fd932","fromNode":"7ba0f7d315165337","fromSide":"right","toNode":"8c68c0a09ba7b03a","toSide":"left"}
 	]
 }

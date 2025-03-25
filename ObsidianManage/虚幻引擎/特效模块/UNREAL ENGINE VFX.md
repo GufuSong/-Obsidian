@@ -385,6 +385,11 @@ tags:
 	- `Cutout Texture`: 裁剪贴图
 	- `Opacity Source Mode`: 选择裁剪依据的通道 .
 	- `Alpha Threshold`: 裁剪阈值 ,  值越大 ,  裁剪的范围越多 .
+
+**7. Material User Param Binding 多样的材质实例选择 :**
+
+- 作用 :
+	- 使用`User Exposed::Material Interface`进行属性传输 ,  可以随时使用不同的材质实例 .
 #### C 1.9 Light 灯光渲染形态
 
 **1.`Light Render`灯光渲染**
@@ -486,7 +491,32 @@ $$
 - 根据目前的阶段 ,  绘制在当前运行的stack (堆栈内存区 ) 上 .  
 
 
+### C 1.13 Niagara Parameter Collection属性参数集
 
+**一. 参数集的作用 :**
+
+- 作为中间层 ,  将变量传输进 Niagara 
+
+**二. 与BluePrint的交互 :**
+
+**1. `Get Niagara Parameter Collection`获取Niagara参数集 :**
+
+- 作用 :
+	- 输入参数集 ,  返回参数集对象 .
+
+
+**2. `Set 类型 Parameter`获取四维矢量参数**
+
+- 作用 :
+	- 更改参数集里的具体属性 .
+
+- 注意 :
+	- 变量类型要匹配 .
+
+
+**三. 使用须知 :**
+
+- 在虚幻4.26 后 ,  Niagara 参数集与 Material 参数集可以集中控制 .
 
 ### Part 2. Niagara 系统模块库
 

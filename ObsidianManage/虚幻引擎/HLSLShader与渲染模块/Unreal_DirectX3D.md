@@ -477,6 +477,17 @@
 - 作用 :
 	- 输出采样器所需要的UV纹理坐标 ,  用于将Sub UV的序列帧逐帧单独采样输出 .  Blend输出混合强度 .
 
+
+#### 2.3.7 `AtmosphericLight Color/Vector`大气光照颜色
+
+**一. Color作用 :**
+
+- 输出大气光照的颜色 ,  可以与Level实时链接 .  当出现两个以上的环境光时 ,  会出现问题 .
+
+**二. Vector方向 :**
+
+- 输出大气的光照方向 .
+
 ---
 
 ## 第三部分: 数学函数
@@ -940,6 +951,10 @@ float Fade = saturate(DepthDelta / FadeDistance); //由于数值过大,需要将
 
 - 待补充
 
+### 6.4 `DDX / DDY`
+
+- 待补充
+
 ## 第七部分 :  官方/本地 函数库
 
 ### 6.1 `CameraDepthFade`根据像素与相机的距离输出渐变Fade(float)
@@ -991,10 +1006,11 @@ float OpacityBasedDepthFade(float FadeDistanceA, float FadeDistanceB, PixelAlpha
 	- 使用Lerp算法增强图像对比度 .
 
 
-### 6.6`DitherTemporalAA`每像素不同
+### 6.6`DitherTemporalAA`抖动TemporalAA
 
 - 作用 :
 	- 根据屏幕像素作为UV采样 ,  使模型上每个像素都输出不同的值 .  常用于产生模糊效果 .
+	- 用于抗锯齿的运算 .
 
 ### 6.7 `WorldAlignedTexture`世界对齐纹理
 
@@ -1042,6 +1058,9 @@ float OpacityBasedDepthFade(float FadeDistanceA, float FadeDistanceB, PixelAlpha
 
 - `After Tonemapping`: 色调映射之后 .
 
+
+
+
 ---
 ### 7.2 `SceneTexture`后期纹理
 
@@ -1061,7 +1080,28 @@ float OpacityBasedDepthFade(float FadeDistanceA, float FadeDistanceB, PixelAlpha
 
 >请记得将`Post Process Material` 的 `Blendable Location` 混合矢量进行修改 .  发生抖动错误时 ,  将`Blendable Location` 更改为 `Before Tonemapping`
 
+**二. UV 输入接口 :**
 
+**1. 使用须知 :**
+
+- 输入UVs时 ,  请注意输入归一化的屏幕分辨率比例
+
+
+### 7.3 `View Property`视图属性
+
+**一. 使用与作用 :**
+
+**1. 基本作用 :**
+
+- 输出引擎显示窗口的属性信息 .
+
+**2. 输出数值 :**
+
+- 输出屏幕的分辨率信息 .  光栅化阶段的抗锯齿模糊信息等 .
+
+
+
+---
 # Ⅱ. HLSL 图形编程
 
 > HLSL 是面向GPU的多线程并行API ,  其实际原理为逐象素依次计算 .
@@ -2208,11 +2248,11 @@ return test03;	//输出[0,0,1]
 
 ### 3. 第三章
 
-### 3.1 `ddx() and ddy()` 计算x或y方向上的梯度
+### 3.1 `ddx() and ddy()` DDX 与 DDY
 
 **1. 作用 :**
 
-* 常用于边缘检测以及图像处理
+* GPU在像素着色阶段使用`ddx / ddy`计算 ,  
 
 ---
 
