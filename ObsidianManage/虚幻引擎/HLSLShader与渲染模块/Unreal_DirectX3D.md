@@ -782,6 +782,15 @@
 
 - 作用 :
 	- 将输入的数据偏移并缩放 ,  数学公式为$(x + Bias) * Scale$ , x为输入值 .
+
+
+### 3.19 `DDX / DDY`相邻像素检测
+
+**1. 作用 :**
+
+* GPU在像素着色阶段使用`ddx / ddy`计算 .
+* ddx(x) = 右侧的像素值 - 当前的像素值
+* ddy(x) = 下方的像素值 - 当前的像素值
 ## 第四部分: 方向输出函数
 
 ### 4.1 `Camera Vector` 相机向量
@@ -1059,6 +1068,14 @@ float OpacityBasedDepthFade(float FadeDistanceA, float FadeDistanceB, PixelAlpha
 - `After Tonemapping`: 色调映射之后 .
 
 
+**三. 后期盒子的影响剔除相应实例**
+
+**1. 通过`Custom Depth - Stencil Pass`自定义深度进行剔除**
+
+- 此功能需要在项目设置中启用`Custom Depth-Stencil Pass`的`Enable with Stencil`功能 . 
+- 开启此功能后 ,  Mesh 的Details会启用`Render CustomDepth Pass`选项 .  在渲染流程中 ,  额外添加`Custom Depth`通道 .  
+- 注意 ,  场景深度的默认值并非为 0 ,  大小与Camera距离有关,  使用时请将其削弱 .
+
 
 
 ---
@@ -1098,6 +1115,9 @@ float OpacityBasedDepthFade(float FadeDistanceA, float FadeDistanceB, PixelAlpha
 **2. 输出数值 :**
 
 - 输出屏幕的分辨率信息 .  光栅化阶段的抗锯齿模糊信息等 .
+
+
+### 7.4 `ViewSize`屏幕分辨率
 
 
 
@@ -2247,12 +2267,13 @@ return test03;	//输出[0,0,1]
 ---
 
 ### 3. 第三章
-
 ### 3.1 `ddx() and ddy()` DDX 与 DDY
 
 **1. 作用 :**
 
-* GPU在像素着色阶段使用`ddx / ddy`计算 ,  
+* GPU在像素着色阶段使用`ddx / ddy`计算 .
+* ddx(x) = 右侧的像素值 - 当前的像素值
+* ddy(x) = 下方的像素值 - 当前的像素值
 
 ---
 
