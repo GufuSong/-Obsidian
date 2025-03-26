@@ -1072,10 +1072,14 @@ float OpacityBasedDepthFade(float FadeDistanceA, float FadeDistanceB, PixelAlpha
 
 **1. 通过`Custom Depth - Stencil Pass`自定义深度进行剔除**
 
-- 此功能需要在项目设置中启用`Custom Depth-Stencil Pass`的`Enable with Stencil`功能 . 
-- 开启此功能后 ,  Mesh 的Details会启用`Render CustomDepth Pass`选项 .  在渲染流程中 ,  额外添加`Custom Depth`通道 .  
-- 注意 ,  场景深度的默认值并非为 0 ,  大小与Camera距离有关,  使用时请将其削弱 .
+- 1) `Custom Depth`自定义深度
+	- 此功能需要在项目设置中启用`Custom Depth-Stencil Pass`的`Enable with Stencil`功能.
+	- 开启此功能后 ,  Mesh 的Details会启用`Render CustomDepth Pass`选项 .  在渲染流程中 ,  额外添加`Custom Depth`通道 .  
+	- 注意 ,  场景深度的默认值并非为 0 ,  大小与Camera距离有关,  使用时请将其削弱 .
 
+- 2) `Custom Stencil` 自定义深度遮罩网
+	- 在 Mesh 的 Details 中 ,  更改`Rendering::Custom Depth Stencil Write Mask`的自定义深度模板值 ,  `Custom Stencil`会输出自定义深度模板值得信息 .
+	- 他会在`CustomStencil`中输出逐象素输出矢量 .  为`Custom Stencil`中自定义的数值 .
 
 
 ---
