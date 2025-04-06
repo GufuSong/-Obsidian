@@ -85,6 +85,7 @@
 - `Use Material Attributes` 使用材质选项 (使用`SetMaterialAttributes` , `GetMaterialAttributes`节点使用)
 - `Alllow Negative Emissive Color` 准许自发光发射负颜色
 - `Decal Response(DBuffer)`: 贴花相应模式 .
+- `Wireframe`:  仅渲染网格的布线信息 .
 
 
 **四. Translucency 半透明选项 :**
@@ -350,6 +351,34 @@
 - `Texture Render Target 2D`
 	- `Size X` :  x 轴分辨率 .
 	- `Size Y` :  y 轴分辨率 .
+
+### 1.16 Material Parameter Collection材质参数集
+
+**一. 在Material中的运用 :**
+
+**1. 理解材质参数集 :**
+
+- 材质参数集可以将参数集中管理 ,  并且支持多个材质使用同样的参数 .
+
+**2. 使用方法 :**
+
+- 直接拖拽进去 ,  选择相应的变量名即可 .
+
+
+**二. 与BluePrint的交互 :**
+
+**1. `Material parameter Collection Object`变量 
+
+- 创建变量 ,  将需要修改的材质参数集输入即可 .
+- 可以使用`Set Vector / Scalar Parameter Value`对内部数据进行更改 .
+
+
+**三. 注意事项 :**
+
+- 使用材质参数及控制参数消耗的性能比材质实例更高 .
+- 请注意不要使用多个蓝图同时对同一个材质参数进行修改 .
+
+---
 ## 第二部分: 纹理 ,  纹理采样以及UV
 
 ### 2.1 `TextureCoordinate` `TestureObject` 纹理, 纹理采样, UV坐标
@@ -1050,16 +1079,25 @@ float OpacityBasedDepthFade(float FadeDistanceA, float FadeDistanceB, PixelAlpha
 **1. 什么是后处理 ?**
 - 后处理是渲染管线的最后一步流程 .  因此 ,  能够访问的数据也是最多的 .  
 
+
 **2. 后期处理的功能 :**
 
 - 自由的调色 .  甚至可以在透明物体渲染之前对齐的进行调色 ,  从而避免调色带来的影响 .
 
+
 **3. 后期处理的Details :**
 
-- `Exposure`曝光
+- `Exposure` 曝光
 	- `Min Brightness`: 最小曝光度 .
 	- `Max Brightness`: 最大曝光度 .
 
+- `Priocity` 多个后期盒子同时影响下的排序问题 ,  数字越大 ,  就越先影响渲染流程 .
+
+
+**4. 多个后期材质下的影响与过渡 :**
+
+- 默认情况下 ,  会将两个材质的影响效果叠加在一起 .  每增加一个后期材质 ,  就会额外计算一次后期材质 .
+- 材质的执行顺序为先执行上行材质 ,  再执行下面行的材质 .
 
 **二. Post Process Material :**
 
@@ -1076,11 +1114,37 @@ float OpacityBasedDepthFade(float FadeDistanceA, float FadeDistanceB, PixelAlpha
 	- 此功能需要在项目设置中启用`Custom Depth-Stencil Pass`的`Enable with Stencil`功能.
 	- 开启此功能后 ,  Mesh 的Details会启用`Render CustomDepth Pass`选项 .  在渲染流程中 ,  额外添加`Custom Depth`通道 .  
 	- 注意 ,  场景深度的默认值并非为 0 ,  大小与Camera距离有关,  使用时请将其削弱 .
+	- Custom Depth 绘制的深度图只会记录启用此功能对象的深度信息 ,  因此不会被其他对象的深度信息覆盖 ,  相当于副深度信息 .
 
 - 2) `Custom Stencil` 自定义深度遮罩网
 	- 在 Mesh 的 Details 中 ,  更改`Rendering::Custom Depth Stencil Write Mask`的自定义深度模板值 ,  `Custom Stencil`会输出自定义深度模板值得信息 .
 	- 他会在`CustomStencil`中输出逐象素输出矢量 .  为`Custom Stencil`中自定义的数值 .
+	- 
 
+**2. 自定义深度的蓝图交互 :**
+
+- 在蓝图创建网格体后 ,  可调用以下接口 :
+	- `Set Render Custom Depth` 是否启用自定义深度 ?
+	- `Set Custom Depth Stencil Value` 设置自定义深度模板值 .
+
+
+**四. 蓝图中的PostProcess组件 :**
+
+**1. 调整后处理的影响范围 :**
+
+- 在`Unbound`选项为`flast`时 ,  显示范围会继承父级的`Box Collision`组件范围 .
+
+**2. 更改后处理的材质以及影响程度 :**
+
+- `Add or Update Blendable` 输入材质以及影响程度 .
+
+**3. `Post Process Volume::Setting`后期处理体积中的设置 **
+
+
+- `Make Post Process Settings`生成后处理设置 :
+
+	- 需要在此节点的细节面板勾选需要使用的具体属性的接口 ,  勾选后 ,  节点左侧会生成相应接口 .
+	- 可以根据系统提示的`Make`节点直至最细节的输入 .
 
 ---
 ### 7.2 `SceneTexture`后期纹理

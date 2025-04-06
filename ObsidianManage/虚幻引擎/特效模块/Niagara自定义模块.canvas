@@ -71,7 +71,9 @@
 		{"id":"171abb9eea8f32bb","type":"text","text":"`Get Render Target Size`获取分辨率\n\n**一. 作用 :**\n\n- 输出Width 与 Height .","x":1240,"y":5793,"width":340,"height":187,"color":"1"},
 		{"id":"a888354232d89d8d","type":"text","text":"`Sample Grid Vector4 Vale`采样4维矢量信息\n\n- 作用 :\n\t- 输入UV信息 ,  返回4维矢量 .\n- Set 与 Sample 的区别 :\n\t- 一个输入的是像素坐标 ,  一个是单位化的插值时间 .\n","x":1745,"y":4820,"width":415,"height":220,"color":"1"},
 		{"id":"9898187685fbd6dd","type":"text","text":"`Set Render Target Value`设置纹理目标信息\n**一. 作用 :**\n\n- 设置Render Target 像素信息 ,  需要输入UV坐标 .","x":1640,"y":5520,"width":340,"height":220,"color":"1"},
-		{"id":"8c68c0a09ba7b03a","x":1944,"y":-511,"width":486,"height":251,"color":"1","type":"text","text":"`Calculate Random Point in Sphere`随机输出球内的点\n\n**一. 参数列表 :**\n- `Inner Radius`:  内圆半径 .\n- `Outer Radius`:  外圆半径 .\n- `Seed`:  随机种子 .\n**二. 返回值 :**\n- `Output`:  返回位置矢量."}
+		{"id":"8c68c0a09ba7b03a","type":"text","text":"`Calculate Random Point in Sphere`随机输出球内的点\n\n**一. 参数列表 :**\n- `Inner Radius`:  内圆半径 .\n- `Outer Radius`:  外圆半径 .\n- `Seed`:  随机种子 .\n**二. 返回值 :**\n- `Output`:  返回位置矢量.","x":1944,"y":-511,"width":486,"height":251,"color":"1"},
+		{"id":"fb17e58e461adc81","x":1432,"y":-1127,"width":351,"height":143,"type":"text","text":"`Sign`判断符号\n- 如果输入值大于1 ,  返回1\n- 如果输入值小于1 ,  返回-1\n- 如果等于0 ,  返回0 ."},
+		{"id":"e500f3b66eeed031","x":2460,"y":-864,"width":180,"height":64,"color":"1","type":"text","text":"`Cross`叉乘"}
 	],
 	"edges":[
 		{"id":"7effbe671a5b9419","fromNode":"3ba929e676c9f9e5","fromSide":"right","toNode":"b99ad09ce7c05a7d","toSide":"left"},
@@ -144,6 +146,8 @@
 		{"id":"1b90cf74e2c27b0c","fromNode":"b2c12f4a93fd4583","fromSide":"right","toNode":"171abb9eea8f32bb","toSide":"left"},
 		{"id":"e58d64e27fc50927","fromNode":"5bda788fe66a2020","fromSide":"right","toNode":"a888354232d89d8d","toSide":"left"},
 		{"id":"f097c091856b4a2c","fromNode":"b2c12f4a93fd4583","fromSide":"right","toNode":"9898187685fbd6dd","toSide":"left"},
-		{"id":"74b852820c3fd932","fromNode":"7ba0f7d315165337","fromSide":"right","toNode":"8c68c0a09ba7b03a","toSide":"left"}
+		{"id":"74b852820c3fd932","fromNode":"7ba0f7d315165337","fromSide":"right","toNode":"8c68c0a09ba7b03a","toSide":"left"},
+		{"id":"5f1dccd626f8ab18","fromNode":"dc3f8d898ebb098f","fromSide":"right","toNode":"fb17e58e461adc81","toSide":"left"},
+		{"id":"e37f9a16d914c4a4","fromNode":"7ba0f7d315165337","fromSide":"right","toNode":"e500f3b66eeed031","toSide":"left"}
 	]
 }

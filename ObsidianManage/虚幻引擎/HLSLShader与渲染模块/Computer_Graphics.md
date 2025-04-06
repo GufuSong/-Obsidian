@@ -73,7 +73,22 @@ date: 2025-01-23
 >	乘法结合律; 
 
 * 数学意义 :
-	* 矢量的模乘以夹角的余弦 .
+	* 矢量的模乘以夹角的余弦 .  
+	* 相应分量相乘再相加 .
+
+- 数学公式表达 :
+$$
+a \cdot b = 
+\begin{Vmatrix}
+a
+\end{Vmatrix}
+\cdot
+\begin{Vmatrix}
+b
+\end{Vmatrix}
+\cos \theta
+$$
+
 
 
 
@@ -88,11 +103,19 @@ date: 2025-01-23
 
 * 数学意义 :
 	* 矢量的模乘以夹角的正弦 .
-
-
+	* 对于两个三维矢量 a b ,  叉乘结果为 :
+$$
+a \times b =
+\begin{bmatrix}
+a_yb_z-a_zb_y\\
+a_zb_x-a_xb_z\\
+a_xb_y-a_yb_x
+\end{bmatrix} 
+$$
 
 
 ### **二. 矩阵 :**
+
 
 
 

@@ -1,6 +1,6 @@
 {
 	"nodes":[
-		{"id":"90160c9aab2e742d","type":"group","x":400,"y":2080,"width":1561,"height":1200,"label":"BP"},
+		{"id":"90160c9aab2e742d","type":"group","x":400,"y":1200,"width":1561,"height":2340,"label":"BP"},
 		{"id":"99c9db770c29040d","type":"text","text":"**`BluePrint`**","x":-305,"y":-117,"width":165,"height":137},
 		{"id":"956570b507a19241","type":"text","text":"**`数学运算`**","x":-10,"y":-560,"width":150,"height":60},
 		{"id":"fa69d668b3a6040a","type":"text","text":"**`Kismet`数学函数库**","x":210,"y":-560,"width":250,"height":60},
@@ -14,22 +14,26 @@
 		{"id":"7f9ad319ee8c03bb","type":"text","text":"**`Clamp`钳制**\n\n**1. 作用 :**\n\n* 将数值限制在指定的最小值和最大值之间\n* `矢量`: 将其每个分量钳制在数值之内","x":641,"y":-398,"width":457,"height":156,"color":"1"},
 		{"id":"77ff6c879e0ef8c3","type":"text","text":"**`激活/扼杀/失活函数`**","x":940,"y":493,"width":250,"height":60},
 		{"id":"40df0ced68d2e6eb","type":"text","text":"**`Spawn`生成Niagara**","x":940,"y":211,"width":250,"height":60},
-		{"id":"283637899390fed0","type":"text","text":"**属性接口影响(注意, 只能影响User Exposed层级下的属性**","x":954,"y":1013,"width":280,"height":80},
 		{"id":"47cf482fa90c444d","type":"text","text":"**`Niagara`尼日加拉组件**\n\n- `Derails`:\n\t- `Activation`\n\t\t- `Auto Activate`: 放置场景中自动激活 .","x":360,"y":420,"width":452,"height":205},
 		{"id":"a60ff385c4c113ec","type":"text","text":"**`Activate`激活Niagara**\n\n- 作用 :\n\t- 播放NiagaraSystem\n\n- 参数列表:\n\t- `target`: 输入Niagara System, 函数被调用时激活函数.\n\t- `Reset`: 每次激活时均从头播放.","x":1327,"y":413,"width":508,"height":220,"color":"1"},
 		{"id":"c44d663704d5c7a9","type":"text","text":"**`Soawn System at Location`基于Location生成Niagara**\n\n- 参数列表 :\n\t- `System Template`: 输入生成的Niagara .\n\t- `Lo, Ro, Sc`: 输入变换 .","x":1287,"y":142,"width":508,"height":198,"color":"1"},
-		{"id":"bdd5a9b706a61efe","type":"text","text":"**`Deactivate`失活**\n\n- 作用：\n\t- 终止播放NiagaraSystem.\n\n- 参数列表:\n\t- `target`: 输入Niagara System, 函数被调用时令Niagara失活.","x":1327,"y":678,"width":508,"height":220,"color":"1"},
-		{"id":"099edd628cb77ec3","type":"text","text":"**`set Niagara Variable`设置niagara属性**\n\n- 作用:\n\t- 设置Niagara的属性 .\n\n- 参数列表:\n\t- `target`: 输入Niagara系统\n\t- `In Variable Name`: 输入需要被修改的属性名称\n\t- `In Value`: 输入修改后的数值.","x":1327,"y":960,"width":545,"height":186,"color":"1"},
 		{"id":"915303eeb1c69a08","type":"text","text":"**`Random Unit Vector`随机单位向量**\n- 作用 :\n\t- 随机输出单位向量 .","x":1163,"y":-360,"width":556,"height":118,"color":"1"},
 		{"id":"d11197509573b68b","type":"text","text":"**`DestroyComponent`扼杀粒子**\n\n- 作用:\n\t- 扼杀Niagara系统 .\n\n- 参数列表:\n\t- `target`: 输入Niagara System, 函数被调用时扼杀Niagara.","x":1872,"y":413,"width":508,"height":220,"color":"1"},
-		{"id":"7cdb12024c937d82","x":1780,"y":-952,"width":660,"height":292,"color":"1","type":"text","text":"**`Random Unit Vector in Cone in Degress`圆锥内随机单位向量**\n\n- 作用 :\n\t- 根据一个固定的单位矢量 ,  随机输出一个旋转固定角度的其他矢量 .  由于形似圆锥 ,  名为圆锥内随机单位向量.\n\n- 参数列表 :\n\t- `Cone Dir`: 输入固定轴向 .\n\t- `Cone Half Angle in Degress`: 输入角度"},
-		{"id":"3ca307a99b4a26b5","type":"text","text":"**事件, 函数**","x":646,"y":2409,"width":250,"height":60},
-		{"id":"e9cd22c245bb48ff","type":"text","text":"**调用**","x":998,"y":2409,"width":104,"height":60},
-		{"id":"cc43c14054fb0858","type":"text","text":"**`Set Timer by Function Name`以事件设置定时器(Type: TimerHandle)**\n\n* 参数列表:\n  * `Object`: 引用一个Object, \n  * `Function Name`: 输入Object 中的Function Name ,  等待TIme后将会被调用 \n  * `Time`: 输入浮点型, 具体为等待的时间. 当Time 小于等于 0 时, 事件不会被执行触发.\n  * `Looping`: 输入布尔值, 若为True, 则事件根据时间的间隔重复被调用.\n* 返回值:\n  * `Return Value`: 返回自身的引用. Type: `Timer Handle","x":1211,"y":2589,"width":557,"height":328,"color":"1"},
-		{"id":"b2b89f0ff9e70f04","type":"text","text":"**`Set Timer by Event`以事件设置定时器(Type: TimerHandle)**\n\n* 参数列表:\n  * `Event`: 引用一个事件, 这个时间将等待Time后被调用\n  * `Time`: 输入浮点型, 具体为等待的时间. 当Time 小于等于 0 时, 事件不会被执行触发.\n  * `Looping`: 输入布尔值, 若为True, 则事件根据时间的间隔重复被调用.\n* 返回值:\n  * `Return Value`: 返回自身的引用. Type: `Timer Handle","x":1211,"y":2111,"width":557,"height":328,"color":"1"},
-		{"id":"d493879ea6f77ce8","type":"text","text":"**`BluePrint`**","x":401,"y":2409,"width":150,"height":60},
-		{"id":"fae7ab7960ee8197","x":998,"y":3080,"width":250,"height":60,"type":"text","text":"**Transform 属性**"},
-		{"id":"b72050dda8b3f824","x":1372,"y":3080,"width":332,"height":60,"type":"text","text":"**`SetActorLocation`设置Actor位置**"}
+		{"id":"7cdb12024c937d82","type":"text","text":"**`Random Unit Vector in Cone in Degress`圆锥内随机单位向量**\n\n- 作用 :\n\t- 根据一个固定的单位矢量 ,  随机输出一个旋转固定角度的其他矢量 .  由于形似圆锥 ,  名为圆锥内随机单位向量.\n\n- 参数列表 :\n\t- `Cone Dir`: 输入固定轴向 .\n\t- `Cone Half Angle in Degress`: 输入角度","x":1780,"y":-952,"width":660,"height":292,"color":"1"},
+		{"id":"bbe59f766466c837","type":"text","text":"6.1.2.7 `Map Range Clamped`线性插值范围钳制\n\n**一. 作用 :**\n\n- 输入数值 ,  并输入数值值域 ,  根据数值在值域中的大小线性输出两个输出值的大小 ,  类似Lerp .","x":1785,"y":-612,"width":651,"height":148,"color":"1"},
+		{"id":"283637899390fed0","type":"text","text":"**属性接口影响(注意, 只能影响User Exposed层级下的属性**","x":954,"y":1013,"width":280,"height":80},
+		{"id":"3ca307a99b4a26b5","type":"text","text":"**事件, 函数**","x":646,"y":1529,"width":250,"height":60},
+		{"id":"e9cd22c245bb48ff","type":"text","text":"**调用**","x":998,"y":1529,"width":104,"height":60},
+		{"id":"b2b89f0ff9e70f04","type":"text","text":"**`Set Timer by Event`以事件设置定时器(Type: TimerHandle)**\n\n* 参数列表:\n  * `Event`: 引用一个事件, 这个时间将等待Time后被调用\n  * `Time`: 输入浮点型, 具体为等待的时间. 当Time 小于等于 0 时, 事件不会被执行触发.\n  * `Looping`: 输入布尔值, 若为True, 则事件根据时间的间隔重复被调用.\n* 返回值:\n  * `Return Value`: 返回自身的引用. Type: `Timer Handle","x":1211,"y":1231,"width":557,"height":328,"color":"1"},
+		{"id":"d493879ea6f77ce8","type":"text","text":"**`BluePrint`**","x":401,"y":1529,"width":150,"height":60},
+		{"id":"fae7ab7960ee8197","type":"text","text":"**Transform 属性**","x":646,"y":2200,"width":250,"height":60},
+		{"id":"056ac6ab6b839fe2","type":"text","text":"Get","x":646,"y":2440,"width":250,"height":60},
+		{"id":"b72050dda8b3f824","type":"text","text":"**`SetActorLocation`设置Actor位置**","x":1211,"y":2200,"width":332,"height":60,"color":"1"},
+		{"id":"3f1a306cf9bb1eb4","type":"text","text":"`Get All Actors Of Class`获取继承自同一基类的派生类\n\n**一. 原理 :**\n- 遍历Level 中的所有蓝图 ,  并检测他的基类 .\n\n**二. 注意 :**\n- 此节点消耗较高, 谨慎使用 .","x":1211,"y":2360,"width":476,"height":215,"color":"1"},
+		{"id":"bdd5a9b706a61efe","type":"text","text":"**`Deactivate`失活**\n\n- 作用：\n\t- 终止播放NiagaraSystem.\n\n- 参数列表:\n\t- `target`: 输入Niagara System, 函数被调用时令Niagara失活.","x":1327,"y":678,"width":508,"height":220,"color":"1"},
+		{"id":"099edd628cb77ec3","type":"text","text":"**`set Niagara Variable`设置niagara属性**\n\n- 作用:\n\t- 设置Niagara的属性 .\n\n- 参数列表:\n\t- `target`: 输入Niagara系统\n\t- `In Variable Name`: 输入需要被修改的属性名称\n\t- `In Value`: 输入修改后的数值.","x":1327,"y":960,"width":545,"height":186,"color":"1"},
+		{"id":"cc43c14054fb0858","type":"text","text":"**`Set Timer by Function Name`以事件设置定时器(Type: TimerHandle)**\n\n* 参数列表:\n  * `Object`: 引用一个Object, \n  * `Function Name`: 输入Object 中的Function Name ,  等待TIme后将会被调用 \n  * `Time`: 输入浮点型, 具体为等待的时间. 当Time 小于等于 0 时, 事件不会被执行触发.\n  * `Looping`: 输入布尔值, 若为True, 则事件根据时间的间隔重复被调用.\n* 返回值:\n  * `Return Value`: 返回自身的引用. Type: `Timer Handle","x":1211,"y":1709,"width":557,"height":328,"color":"1"},
+		{"id":"3c3333dde0739f85","x":1211,"y":2620,"width":476,"height":420,"color":"1","type":"text","text":"`Get Owner`获取所有者\n- **返回当前对象的 Owner（所属 Actor）**\n    \n    - 如果当前对象是一个 **`Actor`**，它的 `Owner` 通常是另一个 `Actor`（例如，一个武器 Actor 的 Owner 可能是持有它的角色）。\n        \n    - 如果当前对象是一个 **`Component`**（如 `SceneComponent`、`StaticMeshComponent` 等），它的 `Owner` 是它所属的 `Actor`。\n        \n- **默认情况下**：\n    \n    - `Actor` 的 `Owner` 通常是生成（Spawn）它的 `Actor`（例如，玩家发射的子弹，其 Owner 是玩家角色）。\n        \n    - `Component` 的 `Owner` 是它附加到的 `Actor`。"}
 	],
 	"edges":[
 		{"id":"574c4a28713c00a5","fromNode":"99c9db770c29040d","fromSide":"right","toNode":"3eebf35ecf035fd7","toSide":"left"},
@@ -59,6 +63,10 @@
 		{"id":"a1caa2576cdc4bcf","fromNode":"fa69d668b3a6040a","fromSide":"right","toNode":"915303eeb1c69a08","toSide":"left"},
 		{"id":"68a6d61d5a0234b1","fromNode":"fa69d668b3a6040a","fromSide":"right","toNode":"7cdb12024c937d82","toSide":"left"},
 		{"id":"3b398772b89bc9a6","fromNode":"d493879ea6f77ce8","fromSide":"right","toNode":"fae7ab7960ee8197","toSide":"left"},
-		{"id":"f16f0694b28487a1","fromNode":"fae7ab7960ee8197","fromSide":"right","toNode":"b72050dda8b3f824","toSide":"left"}
+		{"id":"f16f0694b28487a1","fromNode":"fae7ab7960ee8197","fromSide":"right","toNode":"b72050dda8b3f824","toSide":"left"},
+		{"id":"2b6a28e1add0f5c5","fromNode":"fa69d668b3a6040a","fromSide":"right","toNode":"bbe59f766466c837","toSide":"left"},
+		{"id":"c4348608dc72f926","fromNode":"d493879ea6f77ce8","fromSide":"right","toNode":"056ac6ab6b839fe2","toSide":"left"},
+		{"id":"cedfd2490d192be2","fromNode":"056ac6ab6b839fe2","fromSide":"right","toNode":"3f1a306cf9bb1eb4","toSide":"left"},
+		{"id":"157a23467bca7571","fromNode":"056ac6ab6b839fe2","fromSide":"right","toNode":"3c3333dde0739f85","toSide":"left"}
 	]
 }
