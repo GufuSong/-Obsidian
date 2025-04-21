@@ -21,10 +21,10 @@
 		{"id":"7d5b1d57f4e52c01","type":"text","text":"数学节点","x":411,"y":-791,"width":250,"height":60},
 		{"id":"281b458183f6af47","type":"text","text":"进阶运算","x":761,"y":-671,"width":250,"height":60},
 		{"id":"dc3f8d898ebb098f","type":"text","text":"基础运算","x":771,"y":-951,"width":250,"height":60},
-		{"id":"46786e2ba1dc1390","type":"text","text":"**`Greater Than`大于**","x":1135,"y":-1044,"width":250,"height":60},
-		{"id":"154e614bf8bbc827","type":"text","text":"**`Less Than`小于**","x":1136,"y":-1129,"width":250,"height":60},
-		{"id":"9792b034fd93089b","type":"text","text":"**`Subtract`减法**","x":1136,"y":-851,"width":250,"height":60},
-		{"id":"1bc9127470eefa9d","type":"text","text":"**`Add`加法**","x":1136,"y":-951,"width":250,"height":60},
+		{"id":"46786e2ba1dc1390","type":"text","text":"**`Greater Than`大于**","x":1135,"y":-1044,"width":250,"height":60,"color":"1"},
+		{"id":"154e614bf8bbc827","type":"text","text":"**`Less Than`小于**","x":1136,"y":-1129,"width":250,"height":60,"color":"1"},
+		{"id":"9792b034fd93089b","type":"text","text":"**`Subtract`减法**","x":1136,"y":-851,"width":250,"height":60,"color":"1"},
+		{"id":"1bc9127470eefa9d","type":"text","text":"**`Add`加法**","x":1136,"y":-951,"width":250,"height":60,"color":"1"},
 		{"id":"5b297ee0ed02c3be","type":"text","text":"**`InputMap`程序入口**","x":1630,"y":-2366,"width":250,"height":60,"color":"1"},
 		{"id":"544876108a81ff0f","type":"text","text":"**`Output Module`程序出口**","x":1630,"y":-2272,"width":250,"height":60,"color":"1"},
 		{"id":"8ca99ab59c81271f","type":"text","text":"**`Map Get`读取属性**\n- 作用\n\t- 读取粒子属性 \n\t- 声明自定义属性\n","x":1636,"y":-2184,"width":250,"height":160,"color":"1"},
@@ -72,8 +72,10 @@
 		{"id":"a888354232d89d8d","type":"text","text":"`Sample Grid Vector4 Vale`采样4维矢量信息\n\n- 作用 :\n\t- 输入UV信息 ,  返回4维矢量 .\n- Set 与 Sample 的区别 :\n\t- 一个输入的是像素坐标 ,  一个是单位化的插值时间 .\n","x":1745,"y":4820,"width":415,"height":220,"color":"1"},
 		{"id":"9898187685fbd6dd","type":"text","text":"`Set Render Target Value`设置纹理目标信息\n**一. 作用 :**\n\n- 设置Render Target 像素信息 ,  需要输入UV坐标 .","x":1640,"y":5520,"width":340,"height":220,"color":"1"},
 		{"id":"8c68c0a09ba7b03a","type":"text","text":"`Calculate Random Point in Sphere`随机输出球内的点\n\n**一. 参数列表 :**\n- `Inner Radius`:  内圆半径 .\n- `Outer Radius`:  外圆半径 .\n- `Seed`:  随机种子 .\n**二. 返回值 :**\n- `Output`:  返回位置矢量.","x":1944,"y":-511,"width":486,"height":251,"color":"1"},
-		{"id":"fb17e58e461adc81","x":1432,"y":-1127,"width":351,"height":143,"type":"text","text":"`Sign`判断符号\n- 如果输入值大于1 ,  返回1\n- 如果输入值小于1 ,  返回-1\n- 如果等于0 ,  返回0 ."},
-		{"id":"e500f3b66eeed031","x":2460,"y":-864,"width":180,"height":64,"color":"1","type":"text","text":"`Cross`叉乘"}
+		{"id":"fb17e58e461adc81","type":"text","text":"`Sign`判断符号\n- 如果输入值大于1 ,  返回1\n- 如果输入值小于1 ,  返回-1\n- 如果等于0 ,  返回0 .","x":1432,"y":-1127,"width":351,"height":143,"color":"1"},
+		{"id":"e500f3b66eeed031","type":"text","text":"`Cross`叉乘","x":2460,"y":-864,"width":180,"height":64,"color":"1"},
+		{"id":"f2812467d3c20ad3","type":"text","text":"`Sin`余弦\n**一. 参数列表 :**\n- `Angle`: 输入角度 .\n- `Period`: 角度倍率 .","x":1830,"y":-1127,"width":290,"height":143,"color":"1"},
+		{"id":"b2c981265f6b0be3","x":2140,"y":-1127,"width":320,"height":143,"color":"1","type":"text","text":"`Negate`取相反数\n"}
 	],
 	"edges":[
 		{"id":"7effbe671a5b9419","fromNode":"3ba929e676c9f9e5","fromSide":"right","toNode":"b99ad09ce7c05a7d","toSide":"left"},
@@ -148,6 +150,8 @@
 		{"id":"f097c091856b4a2c","fromNode":"b2c12f4a93fd4583","fromSide":"right","toNode":"9898187685fbd6dd","toSide":"left"},
 		{"id":"74b852820c3fd932","fromNode":"7ba0f7d315165337","fromSide":"right","toNode":"8c68c0a09ba7b03a","toSide":"left"},
 		{"id":"5f1dccd626f8ab18","fromNode":"dc3f8d898ebb098f","fromSide":"right","toNode":"fb17e58e461adc81","toSide":"left"},
-		{"id":"e37f9a16d914c4a4","fromNode":"7ba0f7d315165337","fromSide":"right","toNode":"e500f3b66eeed031","toSide":"left"}
+		{"id":"e37f9a16d914c4a4","fromNode":"7ba0f7d315165337","fromSide":"right","toNode":"e500f3b66eeed031","toSide":"left"},
+		{"id":"7943bfb16ec77de6","fromNode":"dc3f8d898ebb098f","fromSide":"right","toNode":"f2812467d3c20ad3","toSide":"left"},
+		{"id":"fd314b62c932b9f7","fromNode":"dc3f8d898ebb098f","fromSide":"right","toNode":"b2c981265f6b0be3","toSide":"left"}
 	]
 }

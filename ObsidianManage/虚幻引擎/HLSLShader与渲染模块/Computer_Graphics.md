@@ -1008,7 +1008,7 @@ for (int x = 0; x < xmax; ++x)
 - DLSS :  通过深度学习 ,  AI实时生成暴露的细节缺失 .
 
 
-## Class Ⅶ .  Shading One
+## Class Ⅶ .  Shading (Z-Buffer Diffuse Reflection)
 
 
 ### 一. Z - Buffering :
@@ -1089,3 +1089,30 @@ $$
 
 - 其中, $L_d$ 为`Diffusely Reflected Light` , $k_d$ 为 `Diffuse Coefficient(Color)`顶点的反射率系数 , $max(0,\; n\;\cdot \;L)$ 中的 0 指阴影下点接受的能量 ,  防止点乘为负数 .
 - 漫反射所散发的光与Camera的观察角度没有关系 .  说明漫反射与四面八方反射的光源是一致的 .
+
+
+## Class Ⅷ. Shading Two
+
+**一. Specular Term (Blinn Phong) :**
+
+**1. 看到高光的条件 :**
+
+- 当观察方向与光线的反射方向相近时 ,  才可以观察到高光 .  反射矢量点乘观察矢量 .
+
+
+**2. 半程向量 :**
+
+- 给定两个矢量 V , I .  他们的半程矢量为 `||V + I||` ,  这是由于平行四边形法则的特性 .
+
+
+**3. 通过光线入射矢量与反射矢量的半程向量与顶点法线计算Camera是否能看到高光 :**
+
+- 传统上 ,  观察方向越靠近光线的反射方向 ,  则越能观察到高光 .  而Blinn Phong 着色模型取了更方便的方法 :  入射矢量与反射矢量的半程矢量与顶点法线的夹角越小 ,  则Camera越能观察到高光 .
+$$
+L_S = 
+K_s(I/r^2)max(0,cos\alpha)^p=
+K_s(I/r^2)max(0,n\cdot h)^p
+$$
+
+- 关于高光反射的吸收问题 ,  Blinn Phong着色模型简化了此过程 .  $max(0,n\cdot h)^p$ 的指数 p 的数学意义可以理解为$cos\;\alpha^ p$ 其几何意义为曲线在更低角度的斜率会增加 ,  也就是p越大 ,  观察到高光的范围就越小 .  p越小 ,  观察到高光的范围就越大 .
+

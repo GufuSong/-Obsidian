@@ -405,9 +405,10 @@ tags:
 	- `Color Add` :  颜色偏向 .
 	- `Renderer Visibillity` :  钳定发光序号 .
 
-- **`Bindings:`**
+- **`Bindings :` 光线三要素 :**
 	- `Radius Binding` 光照范围 .
 	- `light Exponent Binding` 指数级衰减的指数 .
+	- `color` 光照强度 .
 	- `Volumetric Scattering Binding` 光照影响雾的范围 (此数值与光源亮度有关 ,  光源月越亮 , 则越强 ,  当雾效和光过强时 ,  雾会延迟消散 .)
 
 **2. 光照的两种模式:**

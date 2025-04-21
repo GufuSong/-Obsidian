@@ -820,6 +820,28 @@
 * GPU在像素着色阶段使用`ddx / ddy`计算 .
 * ddx(x) = 右侧的像素值 - 当前的像素值
 * ddy(x) = 下方的像素值 - 当前的像素值
+
+
+### 3.20 `MaterialX Remap`数值范围重映射
+
+**一. 功能解释 :**
+
+**1. 基础功能 :**
+
+- 将一个输入值从原始的数值范围（Input Min/Max）线性映射到新的目标范围（Target Min/Max) .
+- 例如将一张灰度贴图（原始范围 `[0,1]`）重新映射到 `[0.2, 0.8]` ,  以控制材对比度.
+
+Output=Target Min+(Input Max−Input Min / Input Max−Input Min​)×(Target Max−Target Min)
+
+
+**2. 参数解释 :**
+
+- `没名字的接口` :  输入普通数值 .
+- `Input Low` :  输入最低值 .
+- `Input High` :  输入最高值 .
+- `Target Low` :  目标最低值 .
+- `Target High` :  目标最高值 .
+
 ## 第四部分: 方向输出函数
 
 ### 4.1 `Camera Vector` 相机向量
@@ -849,7 +871,7 @@
 	- 输出像素的法向 .
 
 
-## 第五部分: 功能函数节点
+## 第五部分: 功能函数与属性获取节点
 
 ### 5.1 `WorldPosition`世界位置
 
@@ -957,6 +979,22 @@ float Fade = saturate(DepthDelta / FadeDistance); //由于数值过大,需要将
 	- `Hardness`: 圆心开始到球边开始线性渐变 ,  此值决定了球边的常数值  .
 
 
+### 5.14 `View Property`视图属性
+
+**一. 使用与作用 :**
+
+**1. 基本作用 :**
+
+- 输出引擎显示窗口的属性信息 .
+
+**2. 输出数值 :**
+
+- 输出屏幕的分辨率信息 .  光栅化阶段的抗锯齿模糊信息等 .
+
+### 5.15 `ViewSize`屏幕分辨率
+
+
+
 ## 第六部分 :  GPU运行时程序干涉(神秘的冷门节点)
 
 ### **6.1 `VertexInterpolator`顶点插值器**
@@ -989,9 +1027,9 @@ float Fade = saturate(DepthDelta / FadeDistance); //由于数值过大,需要将
 
 - 待补充
 
-### 6.4 `DDX / DDY`
+### 6.4 `Temporal Sample Index`**时间性抗锯齿**
 
-- 待补充
+
 
 ## 第七部分 :  官方/本地 函数库
 
@@ -1069,6 +1107,27 @@ float OpacityBasedDepthFade(float FadeDistanceA, float FadeDistanceB, PixelAlpha
 
 - 此函数有旋转Bug ,  并且无法修复 ,  请注意使用 .
 
+
+### 6.9 `Blend_Overlay`混色运算_覆盖
+
+**一. 节点使用 :**
+
+**1. 基础原理 :**
+
+- 它的作用是基于底层（Base）和上层（Blend）颜色的亮度值，动态调整混合结果，从而增强对比度或保留高光/阴影细节。
+- 对底层(Base)颜色的亮度进行判断 :
+	- 如果底层亮度 < 0.5 ,  则使用乘法混合颜色 (暗部更暗);
+	- 如果底层颜色亮度 **≥ 0.5**：执行 Screen 混合（亮部更亮）。
+
+>Screen 算法 :
+>	( 1- (1 - Base) * (1 - Blend) ) ,  适用于光效叠加等效果 .
+
+**2. 参数作用 :**
+
+- Base :  底层 .
+- Blend :  上层 .
+
+
 ---
 ## 第八部分: 后期处理材质
 
@@ -1091,7 +1150,7 @@ float OpacityBasedDepthFade(float FadeDistanceA, float FadeDistanceB, PixelAlpha
 	- `Min Brightness`: 最小曝光度 .
 	- `Max Brightness`: 最大曝光度 .
 
-- `Priocity` 多个后期盒子同时影响下的排序问题 ,  数字越大 ,  就越先影响渲染流程 .
+- `Priocity` 多个后期盒子同时影响下的排序问题 ,  数字越大 ,  就越优先先影响渲染流程 .
 
 
 **4. 多个后期材质下的影响与过渡 :**
@@ -1145,6 +1204,8 @@ float OpacityBasedDepthFade(float FadeDistanceA, float FadeDistanceB, PixelAlpha
 
 	- 需要在此节点的细节面板勾选需要使用的具体属性的接口 ,  勾选后 ,  节点左侧会生成相应接口 .
 	- 可以根据系统提示的`Make`节点直至最细节的输入 .
+
+>虚幻引擎的相机空间坐标轴与世界坐标不同 .  假设你的眼睛为相机 ,  则X轴为你的右手方向 ,  Y轴为你的上方头顶方向 ,  Z轴为你的前方视线方向 .
 
 ---
 ### 7.2 `SceneTexture`后期纹理
