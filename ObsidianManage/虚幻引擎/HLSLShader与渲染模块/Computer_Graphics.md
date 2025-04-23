@@ -1008,7 +1008,7 @@ for (int x = 0; x < xmax; ++x)
 - DLSS :  通过深度学习 ,  AI实时生成暴露的细节缺失 .
 
 
-## Class Ⅶ .  Shading (Z-Buffer Diffuse Reflection)
+## Class Ⅶ .  Shading One(Z-Buffer Diffuse Reflection)
 
 
 ### 一. Z - Buffering :
@@ -1051,7 +1051,7 @@ for (int x = 0; x < xmax; ++x)
 **2. 基础的着色模型 Blinn Phong Reflectance Model :**
 
 - **`Perceptual Observations` :**
-	- 基础三要素 :  Specular Highlights 高光 ,  Diffuse Reflection 漫反射 ,  Ambient Lighting 反射光 .
+	- 基础三要素 :  Specular Highlights 高光 ,  Diffuse Reflection 漫反射 ,  Ambient Lighting 环境反射光 .
 
 **3. Shading is Local 局部着色 :**
 
@@ -1093,7 +1093,7 @@ $$
 
 ## Class Ⅷ. Shading Two
 
-**一. Specular Term (Blinn Phong) :**
+### **一. Specular Term 高光(Blinn Phong) :**
 
 **1. 看到高光的条件 :**
 
@@ -1115,4 +1115,131 @@ K_s(I/r^2)max(0,n\cdot h)^p
 $$
 
 - 关于高光反射的吸收问题 ,  Blinn Phong着色模型简化了此过程 .  $max(0,n\cdot h)^p$ 的指数 p 的数学意义可以理解为$cos\;\alpha^ p$ 其几何意义为曲线在更低角度的斜率会增加 ,  也就是p越大 ,  观察到高光的范围就越小 .  p越小 ,  观察到高光的范围就越大 .
+
+### 二. Ambient Term 环境反射光照
+
+**1. 什么是Ambient Term 环境反射光 ?**
+
+- 物体的暗面之所以不是完全黑 ,  是因为其他物体的反射光照射在了暗部 .  这类型的光就叫环境反射光 .
+- 我们认为任何一个点接收到的环境光都是相同的 .
+
+$$
+L_a = k_a\;I_a
+$$
+
+- 其中 ,  $L_a$为`reflected Ambient light (环境反射光照)` , $k_a$ 为`ambient coefficient(环境光系数)`  
+
+### 三. 总结Blinn - Phong Reflection Model  着色模型
+
+- Blinn Phong 是由 漫反射 ,  环境光反射 ,  高光构成 .  引用Normal n ;  Light orientation I ;  Camera orientation V 数据 .
+
+$$
+L=L_a+L_b+L_s=
+K_aI_a+k_d(I/r^2)max(0,n\cdot L)+k_s(I/r^2)max(,n\cdot h)^p
+$$
+
+### 四. Shading Frequencies 着色频率
+
+**1. Flat Shading 水平着色 :**
+
+- 每个三角形进行着色 ,  每个图元为一个着色单位 .
+- 以每个图元为单位进行着色 ,  图元的面法线根据顶点计算 .  图元上的所有像素颜色均相同 .
+- 缺点 :  没有平滑表面的效果 .
+
+**2. Gouraud Shading 高洛德着色 :**
+
+- 两次着色 ,  首先计算出顶点的颜色 .  再由插值的方法计算每个图元内像素的颜色 .  也就是只渲染顶点的颜色 .  像素颜色不渲染 ,  由插值的方法单独模拟渲染的颜色 .  (仅在顶点上进行)
+- 三角形过大时高光会消失 .  
+
+
+**3. Phong Shading 冯着色 :**
+
+- 每个像素单独着色 .  由顶点的属性推导出每个像素的属性 ,  再由每个像素分别着色 .
+
+>着色次数的使用要根据像素与图元的数量进行定夺 .  图元数量过多 ,  则Flat Shading 的计算量可能更多 .
+
+
+### 五. 顶点法线的定义 :
+
+**1. 根据面法线求顶点法线的定义 - 将与顶点关联的图元法线根据不同的权重去均值 :**
+
+- 根据面的法线去求顶点的法线 .  任何一个顶点 ,  都会和很多不同的图元进行关联 .  则顶点的法线由所有关联面的法线进行根据面积进行法线的加权平均运算 .
+
+**2. 根据顶点法线求像素法线的定义 - 重心坐标法 
+
+
+### 六. Graphics Pipeline 图形渲染管线
+
+>Graphics Pipeline 中文叫做图形管线 ,  Real - time Rendering 实时渲染管线 .
+
+**1. CPU 数据输入 :** 
+
+- CPU 将模型的属性输入至GPU运算 .  如顶点的坐标 ,  UV坐标等 .
+
+**2. GPU运算 :**
+
+- Vertex Processing :  顶点加工 ,  将顶点变换至屏幕上 .
+- Triangle Processing :  三角形加工 ,  将顶点变换为三角形 .  几何着色器可以对此步骤进行编程 .
+- Rasteriaztion :  光栅化 ,  将三角形包围的像素计算出来 .
+- Fragment Processing :  像素着色 ,  根据不同的方法计算每个像素应有的颜色 .
+- Framebuffer Operations :  帧缓冲数据 ,  将计算完的数据写入帧缓冲最后再输出至屏幕上 .
+
+### 七. 对渲染管线的部分阶段编程
+
+>现代渲染管线准许对部分阶段的编程操作 .
+
+**1. 现代实时渲染支持对Vertex Processing 与 Fragment Processing 进行自定义编程 :**
+
+>我们称之为控制顶点与像素的自定义编程的代码为 shader .
+
+- 现代的GPU支持对顶点与像素的自定义编程 ,  我们成此类编程为Shader Programs .  shader本质是能在硬件上运行的语言 .  如OpenGL .
+- Shader 是通用的 ,  编写的Shader 会对每个顶点或像素分别执行一次 .  可以使用 Sections 指定Shader对顶点与像素的作用域 .
+- 如果Shader 的操作针对的是顶点的操作 ,  则此Shader为Vortex Shader .  如果Shader 操作针对的是像素的操作 ,  则为 Pixel Shader .
+
+**2. Pixel Shader 的作用 :**
+
+- Pixel Shader 的作用为计算每一个像素的颜色 .  
+- 可以去学习OpenGL ,  DirectX 3D等图形API 的运行原理 .
+- 推荐网站 :  `Shader Toy` 
+
+>Vortex Shader 与 Pixel Shader 是传统的着色方法 ,  现代图形渲染具备更多的渲染方式 .  如几何着色器 ( Geometry Shader )  可以定义几何的操作 ,  如动态定义更多的三角形等 .  GPGPU 指使用GPU完成通用计算 .
+
+>材质的本质就是着色方法 ,  多个材质在程序微观下本质表达的就是不同的方法 .
+
+### 八. GPU的架构与运行 : 
+
+**1. GPU的线程并行原理 :**
+
+- GPU 是高度并行化运行的处理器 ,  CPU的核心常见为24核 ,  48 核等 .  但GPU 的核心并行数量达到数百 .  
+
+### 九. Texture Mapping 纹理映射
+
+**1. 纹理映射的意义 :**
+
+- 我们希望为物体的不同像素分别定义不同的属性 ,  这就是引入纹理映射到不同的思路 .  不仅可以定义漫反射系数 ,  还可以定义各种各样不同的东西 .
+- 根本作用是定义不同点的不同的属性 .
+
+**2. 纹理的本质 :**
+
+- 纹理就是一张图片 ,  作用在物体表面 .
+
+**3. 纹理映射坐标系 Texture Coordinates :**
+
+- 纹理坐标本质是二维坐标 ,  值域为 (0 - 1) .
+
+**4. 无缝贴图的设计 :**
+
+- 王 Tiled 算法 可以制作无缝贴图 .
+
+
+
+## Class Ⅸ. Shading Three
+
+
+
+
+
+
+
+
 

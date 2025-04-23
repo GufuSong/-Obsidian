@@ -1131,7 +1131,7 @@ float OpacityBasedDepthFade(float FadeDistanceA, float FadeDistanceB, PixelAlpha
 ---
 ## 第八部分: 后期处理材质
 
-### 7.1 `PostProcess`后期处理的概念
+r### 7.1 `PostProcess`后期处理的概念
 
 **一. 介绍后期处理 :**
 
@@ -1231,6 +1231,28 @@ float OpacityBasedDepthFade(float FadeDistanceA, float FadeDistanceB, PixelAlpha
 **1. 使用须知 :**
 
 - 输入UVs时 ,  请注意输入归一化的屏幕分辨率比例
+
+**三. 属性面板 :**
+
+**1. `Filtered` :**
+
+- 勾选 ,  对场景纹理进行过滤 ,  使采样结果更平滑 ,  减少锯齿(Aliasing) .  
+- 不勾选 ,  直接取最接近的像素值 ,  保留原始数据的“锐利”细节 .
+
+>典型案例 :
+>深度缓冲（SceneDepth）
+    
+    若启用 `Filtered`，可能混合不同深度层，导致边缘模糊，影响遮挡关系的准确性。
+        
+    禁用 `Filtered` 可保留精确的深度值，适合用于精确的几何计算（如高度雾、体积效果）。
+        
+场景颜色（SceneColor）
+    
+    启用 `Filtered` 可平滑颜色过渡，减少锯齿，适合后期处理（如泛光、颜色分级）。
+        
+法线缓冲（Normal）
+    
+    禁用 `Filtered` 可避免法线方向被错误插值，确保几何细节的准确性。
 
 
 ### 7.3 `View Property`视图属性
