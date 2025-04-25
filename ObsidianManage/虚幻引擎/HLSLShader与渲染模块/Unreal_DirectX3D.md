@@ -1131,7 +1131,7 @@ float OpacityBasedDepthFade(float FadeDistanceA, float FadeDistanceB, PixelAlpha
 ---
 ## 第八部分: 后期处理材质
 
-r### 7.1 `PostProcess`后期处理的概念
+### 7.1 `PostProcess`后期处理的概念
 
 **一. 介绍后期处理 :**
 
@@ -1151,6 +1151,7 @@ r### 7.1 `PostProcess`后期处理的概念
 	- `Max Brightness`: 最大曝光度 .
 
 - `Priocity` 多个后期盒子同时影响下的排序问题 ,  数字越大 ,  就越优先先影响渲染流程 .
+- `Is Blendable`:  当场景出现多次后期处理引用相同材质球后 ,  如勾选此选项 ,  则只会运行一次此后期材质 ,  材质参数为所有材质相加再相除 (  取均值 ) .  如不过选 ,  则每个材质都会分别独立运行一次 .
 
 
 **4. 多个后期材质下的影响与过渡 :**
@@ -1268,7 +1269,50 @@ r### 7.1 `PostProcess`后期处理的概念
 - 输出屏幕的分辨率信息 .  光栅化阶段的抗锯齿模糊信息等 .
 
 
-### 7.4 `ViewSize`屏幕分辨率
+### 7.4 场景需要多个后期盒子下的解决方案
+
+**一. 蓝图生成方案 :**
+
+**1. 将后期盒子封装进蓝图并生成 :**
+
+- 将相应的后期盒子的参数等属性相应的封装进蓝图 ,  生成蓝图时即可参与渲染管线的运算 .
+
+>蓝图中的PostProcess组件默认为无限范围 .
+
+
+### 7.5 Custom `Depth / Stenci`自定义深度/模板
+
+**一. Custom Depth / Stencil 的用法 :**
+
+**1. 通过`Custom Depth - Stencil Pass`自定义深度进行剔除**
+
+- 1) `Custom Depth`自定义深度
+	- 此功能需要在项目设置中启用`Custom Depth-Stencil Pass`的`Enable with Stencil`功能.
+	- 开启此功能后 ,  Mesh 的Details会启用`Render CustomDepth Pass`选项 .  在渲染流程中 ,  额外添加`Custom Depth`通道 .  
+	- 注意 ,  场景深度的默认值并非为 0 ,  大小与Camera距离有关,  使用时请将其削弱 .
+	- Custom Depth 绘制的深度图只会记录启用此功能对象的深度信息 ,  因此不会被其他对象的深度信息覆盖 ,  相当于副深度信息 .
+
+- 2) `Custom Stencil` 自定义深度遮罩网
+	- 在 Mesh 的 Details 中 ,  更改`Rendering::Custom Depth Stencil Write Mask`的自定义深度模板值 ,  `Custom Stencil`会输出自定义深度模板值得信息 .
+	- 他会在`CustomStencil`中输出逐象素输出矢量 .  为`Custom Stencil`中自定义的数值 .
+	- 
+
+**2. 自定义深度的蓝图交互 :**
+
+- 在蓝图创建网格体后 ,  可调用以下接口 :
+	- `Set Render Custom Depth` 是否启用自定义深度 ?
+	- `Set Custom Depth Stencil Value` 设置自定义深度模板值 .
+
+
+**二. 使用须知 :**
+
+**1. 额外的渲染流程 :**
+
+- 只要使用此功能 ,  渲染管线中会自动启用`DrawTexture` ,  会带来0.03ms左右的时间占用 .
+- `Custom Stencil`本质原理为在屛幕上绘制遮罩 ,  而载体就是网格体模型 .
+
+
+
 
 
 
@@ -1408,6 +1452,8 @@ uint test4 = test3; //内存溢出
 
 return test4;
 ```
+
+
 
 
 
@@ -3137,6 +3183,29 @@ struct FShaderMaterialPropertyDefines
 ```
 
 
+
+# Ⅲ. 图形算法
+
+## 一. 模糊算法 :
+
+### 1.1 卷积算法(多采样均值模糊) :
+
+
+### 1.2 离散化差异采样算法 :
+
+**一. 实现的原理 :**
+
+**1. 在TextureMapping中打乱顶点的UV坐标 :**
+
+- 打乱顶点的UV坐标 ,  可以令像素的属性采样坐标随机化 .
+
+**2. 使用打乱后的UV坐标对纹理进行采样 :**
+
+- 相邻像素颜色不同 ,  但整体上仍然有相同 ,  符合模糊的项目使用价值 .
+
+## 二. 色相偏移 :
+
+### 2.1 色彩通道像素着色时分别采样并梯状偏移
 
 
 

@@ -33,7 +33,8 @@
 		{"id":"bdd5a9b706a61efe","type":"text","text":"**`Deactivate`失活**\n\n- 作用：\n\t- 终止播放NiagaraSystem.\n\n- 参数列表:\n\t- `target`: 输入Niagara System, 函数被调用时令Niagara失活.","x":1327,"y":678,"width":508,"height":220,"color":"1"},
 		{"id":"099edd628cb77ec3","type":"text","text":"**`set Niagara Variable`设置niagara属性**\n\n- 作用:\n\t- 设置Niagara的属性 .\n\n- 参数列表:\n\t- `target`: 输入Niagara系统\n\t- `In Variable Name`: 输入需要被修改的属性名称\n\t- `In Value`: 输入修改后的数值.","x":1327,"y":960,"width":545,"height":186,"color":"1"},
 		{"id":"cc43c14054fb0858","type":"text","text":"**`Set Timer by Function Name`以事件设置定时器(Type: TimerHandle)**\n\n* 参数列表:\n  * `Object`: 引用一个Object, \n  * `Function Name`: 输入Object 中的Function Name ,  等待TIme后将会被调用 \n  * `Time`: 输入浮点型, 具体为等待的时间. 当Time 小于等于 0 时, 事件不会被执行触发.\n  * `Looping`: 输入布尔值, 若为True, 则事件根据时间的间隔重复被调用.\n* 返回值:\n  * `Return Value`: 返回自身的引用. Type: `Timer Handle","x":1211,"y":1709,"width":557,"height":328,"color":"1"},
-		{"id":"3c3333dde0739f85","x":1211,"y":2620,"width":476,"height":420,"color":"1","type":"text","text":"`Get Owner`获取所有者\n- **返回当前对象的 Owner（所属 Actor）**\n    \n    - 如果当前对象是一个 **`Actor`**，它的 `Owner` 通常是另一个 `Actor`（例如，一个武器 Actor 的 Owner 可能是持有它的角色）。\n        \n    - 如果当前对象是一个 **`Component`**（如 `SceneComponent`、`StaticMeshComponent` 等），它的 `Owner` 是它所属的 `Actor`。\n        \n- **默认情况下**：\n    \n    - `Actor` 的 `Owner` 通常是生成（Spawn）它的 `Actor`（例如，玩家发射的子弹，其 Owner 是玩家角色）。\n        \n    - `Component` 的 `Owner` 是它附加到的 `Actor`。"}
+		{"id":"3c3333dde0739f85","type":"text","text":"`Get Owner`获取所有者\n- **返回当前对象的 Owner（所属 Actor）**\n    \n    - 如果当前对象是一个 **`Actor`**，它的 `Owner` 通常是另一个 `Actor`（例如，一个武器 Actor 的 Owner 可能是持有它的角色）。\n        \n    - 如果当前对象是一个 **`Component`**（如 `SceneComponent`、`StaticMeshComponent` 等），它的 `Owner` 是它所属的 `Actor`。\n        \n- **默认情况下**：\n    \n    - `Actor` 的 `Owner` 通常是生成（Spawn）它的 `Actor`（例如，玩家发射的子弹，其 Owner 是玩家角色）。\n        \n    - `Component` 的 `Owner` 是它附加到的 `Actor`。","x":1211,"y":2620,"width":476,"height":420,"color":"1"},
+		{"id":"3e4bac57b075e671","x":1211,"y":3100,"width":329,"height":80,"color":"1","type":"text","text":"`Get Time Range`获取时间轴\n"}
 	],
 	"edges":[
 		{"id":"574c4a28713c00a5","fromNode":"99c9db770c29040d","fromSide":"right","toNode":"3eebf35ecf035fd7","toSide":"left"},
@@ -67,6 +68,7 @@
 		{"id":"2b6a28e1add0f5c5","fromNode":"fa69d668b3a6040a","fromSide":"right","toNode":"bbe59f766466c837","toSide":"left"},
 		{"id":"c4348608dc72f926","fromNode":"d493879ea6f77ce8","fromSide":"right","toNode":"056ac6ab6b839fe2","toSide":"left"},
 		{"id":"cedfd2490d192be2","fromNode":"056ac6ab6b839fe2","fromSide":"right","toNode":"3f1a306cf9bb1eb4","toSide":"left"},
-		{"id":"157a23467bca7571","fromNode":"056ac6ab6b839fe2","fromSide":"right","toNode":"3c3333dde0739f85","toSide":"left"}
+		{"id":"157a23467bca7571","fromNode":"056ac6ab6b839fe2","fromSide":"right","toNode":"3c3333dde0739f85","toSide":"left"},
+		{"id":"075e0d2cc9152578","fromNode":"056ac6ab6b839fe2","fromSide":"right","toNode":"3e4bac57b075e671","toSide":"left"}
 	]
 }
