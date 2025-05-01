@@ -56,11 +56,14 @@
 		{"id":"ebd4ffc2794036a0","type":"text","text":"**`Solve Forces and Velocity` Force和Velocity解算器**\n\n* 作用 :\n  * 实时计算粒子的属性 ,  并使用数学算法模拟 .  本模块是解算器基础模块 .\n\n* 菜单面板\n  * Acceleration Limit :  加速度限制 .\n  * Speed Limit :  速度限制 .\n","x":700,"y":4480,"width":566,"height":233,"color":"1"},
 		{"id":"0f853b1ae1df568b","type":"text","text":"**`解算器`**","x":380,"y":4566,"width":250,"height":60},
 		{"id":"4f8bf3ff19a38f8a","type":"text","text":"**`Solve Rotational Force and Velocity`旋转力和速度解算器**\n\n- 作用 :\n\t- 专门用来结算物体自身旋转时的力 .","x":1286,"y":4480,"width":545,"height":140,"color":"1"},
-		{"id":"7932b34542d14045","x":393,"y":3187,"width":250,"height":60,"type":"text","text":"`Velocity`速度"},
+		{"id":"7932b34542d14045","type":"text","text":"`Velocity`速度","x":393,"y":3187,"width":250,"height":60},
 		{"id":"031979b5b829408a","type":"text","text":"**`Inherit Velocity`继承速度**\n\n- 作用 :\n\t- 粒子生成时读取发射器的移动速度 ,  并将此速度加到新生成了粒子上 .\n\n- 参数列表 :\n\t- `Velocity Scale`: 速度倍率.\n\t- `Velocity Limit`: 最大速度限制 .","x":806,"y":3097,"width":570,"height":240,"color":"1"},
-		{"id":"68d4edcab50b63d9","x":1440,"y":3097,"width":240,"height":63,"color":"1","type":"text","text":"`Add Velocity` 添加速度"},
-		{"id":"9f7fac2a7e378262","x":2040,"y":2400,"width":600,"height":165,"color":"1","type":"text","text":"`Apply Initial Force`应用初始化力\n**一. 解释 :**\n**1. 作用 :**\n- 在粒子生成阶段 ,  根据粒子的质量与速度生成物理力 ."},
-		{"id":"7c3b6462b4174356","x":2040,"y":2585,"width":600,"height":237,"color":"1","type":"text","text":"`Acceleration Force`加速力\n**一. 解释 :**\n**1. 作用 :**\n- 施加一个恒定的力 ,  类似重力等 .  若让在Update 则可以实时更改恒定力的方向 ."}
+		{"id":"68d4edcab50b63d9","type":"text","text":"`Add Velocity` 添加速度","x":1440,"y":3097,"width":240,"height":63,"color":"1"},
+		{"id":"9f7fac2a7e378262","type":"text","text":"`Apply Initial Force`应用初始化力\n**一. 解释 :**\n**1. 作用 :**\n- 在粒子生成阶段 ,  根据粒子的质量与速度生成物理力 .","x":2040,"y":2400,"width":600,"height":165,"color":"1"},
+		{"id":"7c3b6462b4174356","type":"text","text":"`Acceleration Force`加速力\n**一. 解释 :**\n**1. 作用 :**\n- 施加一个恒定的力 ,  类似重力等 .  若让在Update 则可以实时更改恒定力的方向 .","x":2040,"y":2585,"width":600,"height":237,"color":"1"},
+		{"id":"566c7f7bb2cbc729","type":"text","text":"`Initial Ribbon`初始化条带\n**一. 解释 :**\n**1. 参数 :**\n\n- `Ribbon Width`:  条带宽度 .\n- `Ribbon Twist`:  条带扭转 .\n\n","x":1705,"y":500,"width":553,"height":180,"color":"1"},
+		{"id":"3f9efe2cb938c1e8","x":1705,"y":720,"width":553,"height":160,"color":"1","type":"text","text":"`Spawn Beam`生成激光\n\n- 必须与`Beam Emitter Setup`配合使用 ."},
+		{"id":"008890dcc00fc202","x":2708,"y":-700,"width":499,"height":640,"color":"1","type":"text","text":"`Beam Emitter Setup`激光发射装置\n**一. 功能 :**\n\n**1. 行为 :**\n- 生成均匀的直线排列的粒子 .  必须在Particle Spawn 阶段使用`Spawn Beam`配合 .\n\n**2. 参数 :**\n- `Beam`:  激光开始发射位置 .\n- `Absolute Beam Start`:  绝对开始位置 .\n- `Beam End`:  激光结束位置 .\n- `Absolute Beam End`:  绝对结束位置 .\n- `Use Beam Tangents`:  使用激光切线 .\n\n**二. 使用须知 :**\n\n**1. 注意事项 :**\n- 此模块无法生成粒子 ,  需要搭配其他发射模块使用 .\n\n**2. 连携属性 :**\n- `BeamEnd`:  粒子终点 .\n- `BeamStart`:  粒子起点 .\n"}
 	],
 	"edges":[
 		{"id":"b7ce33ab1f3109a9","fromNode":"da96c257bf1cd58a","fromSide":"left","toNode":"d15ccbe6db0b0117","toSide":"right"},
@@ -122,6 +125,9 @@
 		{"id":"5f1bc2f294024041","fromNode":"7932b34542d14045","fromSide":"right","toNode":"031979b5b829408a","toSide":"left"},
 		{"id":"0068df89fda37aca","fromNode":"7932b34542d14045","fromSide":"right","toNode":"68d4edcab50b63d9","toSide":"left"},
 		{"id":"8398d9befc169e24","fromNode":"3a35f246a9097a70","fromSide":"right","toNode":"9f7fac2a7e378262","toSide":"left"},
-		{"id":"7911f22a7e0996ed","fromNode":"3a35f246a9097a70","fromSide":"right","toNode":"7c3b6462b4174356","toSide":"left"}
+		{"id":"7911f22a7e0996ed","fromNode":"3a35f246a9097a70","fromSide":"right","toNode":"7c3b6462b4174356","toSide":"left"},
+		{"id":"b17a253d04f838c2","fromNode":"10e8017c02967529","fromSide":"right","toNode":"566c7f7bb2cbc729","toSide":"left"},
+		{"id":"4950a0c635e91efd","fromNode":"10bec2d4d7c1e56f","fromSide":"right","toNode":"008890dcc00fc202","toSide":"left"},
+		{"id":"8c7ce6a0d6871af4","fromNode":"10e8017c02967529","fromSide":"right","toNode":"3f9efe2cb938c1e8","toSide":"left"}
 	]
 }

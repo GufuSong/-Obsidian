@@ -429,8 +429,15 @@ tags:
 
 	- `Volumetric Translucent Shadow`: 半透明接触阴影 .
 	- `Contact Shadow`: 接触阴影 .
+
+
+
 #### C 1.10 Ribbon 线条渲染形态
 ##### c 1.10.1 工具使用与基本定义
+
+
+**一. 解释Ribbon :**
+
 
 **1. Ribbon 的两种渲染方式 :**
 
@@ -438,25 +445,41 @@ tags:
 
 - Beam :  瞬间生成全部 ,  出现即全部 .
 
+**2. Ribbon 的Bindings :**
+
+- `Ribbon Width Binding` :  宽度 .
+- `Ribbon Link Order Binding` :  连接顺序 .
+- `Ribbon Twist Binding` :  拧麻花结 .
+
+**3. Ribbon 材质 :**
+
+- Ribbon生成的面片所有顶点共用一套Shader .
 
 
-**2. Beam的必要模块 :**
-
-- Emitter Update
-	- Beam Emitter Setup 
-- Particle Spawn
-	- Spawn Beam (Beam生成)
-	- Beam Width (Beam 宽度)		- Beam Twist Amount :  朝向
 
 
-**3. Ribbon的必要模块 :**
+**二. Ribbon 的渲染方式 :**
 
-* INITIALIZE RIBBON :  ribbon初始化
+**1. 条带的连接方式 :**
 
-**3. Ribbon 解释 :
+- 根据属性中`Ribbon Link Order Binding`的值从小至大(从大道小)依次连接 .  在没有赋值`Ribbon Link Order Binding`的情况下 ,  默认赋值粒子属性`Age` .  
+- 注意 ,  因此在默认情况下 ,  Ribbon 并非按照生成顺序连接 .
 
-- 本质为将生成的片状粒子连接成线片 .
 
+**三. UV Setting :**
+
+>UV 坐标的两种设置方式 :  UV坐标完全铺开 与UV坐标隔长度重复 两种 .
+
+
+**四. 曲线算法 :**
+
+**1. Tessellation 更改曲线形态 :**
+
+- `Max Tessellation Factor` :  细分段数 .
+
+**2. `Automatic`模式细分曲线 :**
+
+- 根据粒子之间的距离自动变换细分段数 .
 
 #### C 1.11 Mesh 网格体渲染形态
 
@@ -942,13 +965,15 @@ $$
 
 
 
-###### c 3.3.3 TRANSIENT 瞬间属性
+###### c 3.2.3 TRANSIENT 瞬间属性
 
 **1.PhysicsDrag 阻力**
 
 * 物理阻力属性
 
 
+
+###### c 3.2.4 `DATA INSTANCE`数据实例
 
 
 
@@ -1303,6 +1328,10 @@ $$
 **1. 什么是`Grid 2D` ?**
 
 - 类似加强版的 Render Texture ,  类似二维数组 .  
+
+
+### Part 5. Niagara 相关组件以及使用方法
+
 
 
 ## Ⅲ  DirectX Shader

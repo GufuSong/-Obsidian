@@ -10,7 +10,7 @@
 		{"id":"6a42f7c795737c88","type":"text","text":"**`Sample Spline Position by Unit Distance WS`采样曲线与U方向运动单位获取位置世界坐标**\n- 作用 :\n\t- 输入曲线与 单位距离 ,  输出曲线上的坐标\n\n- 参数列表 :\n\t- `Spline` :  曲线\n\t- `U` :  输入单位 .\n\n- 返回值 :\n\t- `Position`","x":1345,"y":1092,"width":720,"height":305,"color":"1"},
 		{"id":"3988d78af3ab4504","type":"text","text":"**`Sample Spline Direction by Unit Distance WS`采样曲线与U方向运动单位获取路径前进方向矢量 世界坐标**\n- 作用 :\n\t- 输入曲线与 单位距离 ,  输出曲线前进方向的矢量\n\n- 参数列表 :\n\t- `Spline` :  曲线\n\t- `U` :  输入单位 .\n\n- 返回值 :\n\t- `Direction`","x":1345,"y":1437,"width":720,"height":340,"color":"1"},
 		{"id":"7225e225a9f395d2","type":"text","text":"**`Sample Spline Right Vector by Unit Distance WS`采样曲线与U方向运动单位获取路径前进方向矢量 世界坐标**\n- 作用 :\n\t- 输入曲线与 单位距离 ,  输出曲线点右侧方向的矢量 ( 粒子的X轴方向 .)\n\n- 参数列表 :\n\t- `Spline` :  曲线\n\t- `U` :  输入单位 .\n\n- 返回值 :\n\t- `RightVector`","x":1345,"y":1817,"width":720,"height":340,"color":"1"},
-		{"id":"c3dc0ecb7bfb00f9","type":"text","text":"**属性与变量节点(备注记录)**\n\n- Static Mesh\n- Spline\n- Particle Attribute Reader\n- Position\n- CurlNoise\n- CameraQuery\n- Curve\n- Grid2D Collection\n- LocalSpace\n- DeltaTime\n- PhySiceForce\n- Velocity\n- ENiagaraCoordinateSpace\n- Texture Sample\n- RenderTerget2D\n- TextureRenderTerget\n","x":29,"y":1577,"width":331,"height":543},
+		{"id":"c3dc0ecb7bfb00f9","type":"text","text":"**属性与变量节点(备注记录)**\n\n- Static Mesh\n- Spline\n- Particle Attribute Reader\n- Position\n- CurlNoise\n- CameraQuery\n- Curve\n- Grid2D Collection\n- LocalSpace\n- DeltaTime\n- PhySiceForce\n- Velocity\n- ENiagaraCoordinateSpace\n- Texture Sample\n- RenderTerget2D\n- TextureRenderTerget\n- Alive 存活\n","x":29,"y":1577,"width":331,"height":543,"color":"#784d21"},
 		{"id":"7ba0f7d315165337","type":"text","text":"矢量运算","x":1149,"y":-671,"width":250,"height":60},
 		{"id":"62853171c0964706","type":"text","text":"`Make::Vector`实数合成矢量","x":1565,"y":-851,"width":281,"height":60,"color":"1"},
 		{"id":"2579b1eb11723d4b","type":"text","text":"`Break::Vector`矢量结构实数","x":1564,"y":-771,"width":282,"height":60,"color":"1"},
@@ -75,7 +75,8 @@
 		{"id":"fb17e58e461adc81","type":"text","text":"`Sign`判断符号\n- 如果输入值大于1 ,  返回1\n- 如果输入值小于1 ,  返回-1\n- 如果等于0 ,  返回0 .","x":1432,"y":-1127,"width":351,"height":143,"color":"1"},
 		{"id":"e500f3b66eeed031","type":"text","text":"`Cross`叉乘","x":2460,"y":-864,"width":180,"height":64,"color":"1"},
 		{"id":"f2812467d3c20ad3","type":"text","text":"`Sin`余弦\n**一. 参数列表 :**\n- `Angle`: 输入角度 .\n- `Period`: 角度倍率 .","x":1830,"y":-1127,"width":290,"height":143,"color":"1"},
-		{"id":"b2c981265f6b0be3","x":2140,"y":-1127,"width":320,"height":143,"color":"1","type":"text","text":"`Negate`取相反数\n"}
+		{"id":"b2c981265f6b0be3","type":"text","text":"`Negate`取相反数\n","x":2140,"y":-1127,"width":320,"height":143,"color":"1"},
+		{"id":"981d642d7e52b2ea","x":-292,"y":2869,"width":352,"height":171,"color":"5","type":"text","text":"`DATA INSTANCE::Alive`存活\n- 作用 :\n\t- 输入布尔型 ,  True为存活 ,  Flase为死亡\n"}
 	],
 	"edges":[
 		{"id":"7effbe671a5b9419","fromNode":"3ba929e676c9f9e5","fromSide":"right","toNode":"b99ad09ce7c05a7d","toSide":"left"},
@@ -152,6 +153,7 @@
 		{"id":"5f1dccd626f8ab18","fromNode":"dc3f8d898ebb098f","fromSide":"right","toNode":"fb17e58e461adc81","toSide":"left"},
 		{"id":"e37f9a16d914c4a4","fromNode":"7ba0f7d315165337","fromSide":"right","toNode":"e500f3b66eeed031","toSide":"left"},
 		{"id":"7943bfb16ec77de6","fromNode":"dc3f8d898ebb098f","fromSide":"right","toNode":"f2812467d3c20ad3","toSide":"left"},
-		{"id":"fd314b62c932b9f7","fromNode":"dc3f8d898ebb098f","fromSide":"right","toNode":"b2c981265f6b0be3","toSide":"left"}
+		{"id":"fd314b62c932b9f7","fromNode":"dc3f8d898ebb098f","fromSide":"right","toNode":"b2c981265f6b0be3","toSide":"left"},
+		{"id":"89fae0bd1fe890ec","fromNode":"c3dc0ecb7bfb00f9","fromSide":"bottom","toNode":"981d642d7e52b2ea","toSide":"top"}
 	]
 }

@@ -132,26 +132,37 @@
 * 绿色: 可选中
 * 蓝色:是否显示
 
-**3. 相机动画 :**
+**一. 动画图表 :**
 
-* 时间栏:
-  * 可以调整时间
-  * 每秒帧率与总时长在设置里更改.
-  * 实时播放状态, 勾选real time toggle
-* k帧方法:
-  * `alt and con` +左键.
-* 动画编辑器:
-  * `shift + 左键` 属性面板为属性编辑器.
-  * `F G H` 居中快捷键
-* 拍屏:
-  * 拍屏时间起始与时间轴自动匹配
-  * `size` 里调整分辨率与画框长宽比
-  * 拍屏时`Esc` 退出拍屏.
-  * 保存拍屏(可输出序列帧和视频):
-    * `File-Export - QuiteTime Movie` 保存mov格式视频
-    * output File : 选择保存地址.'
-  * 保存序列帧:
-    * `$F`表达式: 输出图片按顺序+1;
+**1. 动画设置 :**
+
+- 在Global Animation Options 中可以进行全局动画设置 . 
+
+**2. Realtime Playback :**
+
+- 实时播放 ,  参照现实时间进行播放 .
+
+**3. 关键帧编辑 :**
+
+- 钥匙图标内包含全部的关键帧编辑操作 .  注意要将时间轴上的引脚移动至正确位置 .
+- 快捷键 :`Alt + 鼠标左键` 点击属性可以直接对单个属性进行 Key 帧 .
+
+**4. 动画编辑器 - Animation Editor :**
+
+- 快捷键`Shift + 鼠标左键`单击属性可以快捷开启曲线编辑器 .
+
+
+**二. Filpbook 屏幕录制 :**
+
+**1. 屏幕录制设置 :**
+
+- 注意分辨率与摄像机匹配 .
+
+**2. 导出拍屏内容 :**
+
+- 渲染窗口下的`File - Expotr`即可输出渲染文件 .
+- 可输出序列帧或视频 .
+
 
 ---
 
@@ -163,27 +174,33 @@
 * `Render` 相机在视窗中的显示方式
 * `View` :
   * Icon Scale: 视窗图标大小
-  * Resolution: 调整宽高比(提供了很多的参考方式)
-  * Pixel Aspect Ratio: 图片纹素比
+  * Resolution: 调整宽高比或分辨率(提供了很多的参考方式)
+  * Pixel Aspect Ratio: 输出像素的纹素比(形状)
   * Projection: 透视关系
-  * Focal Length: 焦距
+  * Focal Length: 焦段 .
   * Aperture: 焦距微调
   * Near Clipping: 近裁面(0.1)
   * Far Clipping: 远裁面(此比例会影响透视)
-  * Screen (上下两个): 画面压缩
+  * Screen Window X/Y :  横向偏移
+  * Screen Windows Size :  FOV 视野角度 .
+  * Screen Windows Mask :  场景窗口背景 .
+	  * Enable Background Image :  是否渲染背景 ?
   * Enable Background Image: 是否导入图片.
 
 **2. 视口相机设置 :**
 
 * 左上角菜单`Persp`调整, 或快捷键.
 
-**3. 视窗设置 :**
+**二. Display Options :**
+
+**1. 视窗设置 :**
 
 * 右下角小眼睛图标
 * 透视图下加载图片:
   * `Background - Persp`: 指定图片.
 * 更改视图视角远近裁面:
   * 1.`camera - Near/Far Clip Planes` 调整远近裁面
+
 
 ---
 
@@ -196,6 +213,8 @@
 
 **二. 关于Houdini的设置 :**
 
+**1. 基础讲解 :**
+
 * 使用Alembic节点导入ABC格式文件.
 
 **`DK::Alembic`** 导入ABC
@@ -206,6 +225,13 @@
   * Load As: 读入时, 以什么形式读入. 为枚举型
     * Alembic Delayed Load Primitives ABC导入的默认压缩格式.
     * Unpack Alembic Delayed Load Primitives 无压缩状态, 在下方Poly Soup Primitives 选择No Poly Soup Primitives 即可获得 Polygons 的文件
+
+
+**2. Houdini导入操作 :**
+
+- Maya 默认导出的ABC文件为压缩状态下的文件 ,  需要unpack使用 . 
+
+
 
 **`unpack`**解压缩节点
 
