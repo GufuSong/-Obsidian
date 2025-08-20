@@ -44,10 +44,9 @@
 		{"id":"be5ba1a3ac0683f6","type":"text","text":"**`Gravity Force`重力**","x":1420,"y":4800,"width":250,"height":60,"color":"1"},
 		{"id":"61d00130aad7d090","type":"text","text":"**`Curl Noise Force`随机噪波扰乱力**\n\n* 作用 :\n  * 添加随机扰动的立场 .\n* 参数 :\n  * Noise Strength :  力强度 (方向角度与运动速度)\n  * Noise Frequency :  力频率 ,   控制粒子运动形态 ,  数值越大越碎 ,  越小越整 .\n  * Noise Quality / Cost :  噪波精细度 ,  控制噪波运动精细度 .\n  * Pan Noise Field :  运动偏移 ,  修改细节 ,  效果不大 .\n  * Mask Contribution :   根据速度的方向限制扰乱力的影响 .\n    * Curl Noise Cone Mask Angle :  最大改变速度方向的角度\n    * Curl Noise Cone Mask Falloff Angle :  最小改变速度方向的角度\n- 使用须知 :\n\t- 此节点的力基于世界位置发生变化 .","x":700,"y":5070,"width":682,"height":410,"color":"1"},
 		{"id":"edf2d07cdcd4dfc1","type":"text","text":"**`Scale Sprite Size by Speed`基于Velocity控制粒子Size**\n\n- 作用 :\n\t- 基于速度做 Size 的线性插值 .  \n\n- 参数列表 :\n\t- `Min Scale Factor` :  当速度为0时的形变 .\n\t- `Max Scale Factor` :  当速度为1时的形变 .\n\t- `Velocity Threshold` :  速度阈值 .  数值越大 ,  形变越小 .  反之 ,  反之 .\n","x":700,"y":5516,"width":682,"height":264,"color":"1"},
-		{"id":"d9b3f6793489ba9a","type":"text","text":"**`Camera Offset`粒子渲染时靠近相机**\n- 作用 :\n\t- 渲染时靠近相机","x":1880,"y":5577,"width":340,"height":142,"color":"1"},
 		{"id":"658f9783a62f9db7","type":"text","text":"**`Sprite Rotation Rate`粒子旋转速率**\n\n- 作用 :\n\t- 令粒子旋转 .  注意是Alignment旋转 .\n- 使用须知 :\n\t- 速率的正反决定旋转的方向 ,  可以利用此特性避免同质化 .","x":1420,"y":5516,"width":399,"height":264,"color":"1"},
-		{"id":"f2d9645be98dfaee","type":"text","text":"`Vortex Force`漩涡力\n\n**一. 基础介绍:**\n\n**1. 功能介绍 :**\n\n- 添加粒子指向变量`VortexOrigin`的力 .\n\n**2. 参数列表 :**\n\n- `Vortex Force Amount`: 漩涡力度 .\n- `Origin Pull Amount`:  漩涡起源拉拽粒子的力度 .\n- `Vortex origin`: 漩涡轴心 .\n- `Vortex Axis`: 漩涡轴 .","x":2796,"y":4640,"width":760,"height":400,"color":"1"},
-		{"id":"57fc7edc658a47ae","type":"text","text":"`Point Force`点牵引力\n\n**一. 基础介绍 :**\n","x":2796,"y":5080,"width":760,"height":380,"color":"1"},
+		{"id":"f2d9645be98dfaee","type":"text","text":"`Vortex Force`漩涡力\n\n**一. 基础介绍:**\n\n**1. 功能介绍 :**\n\n- 添加粒子指向变量`VortexOrigin`的力 .\n\n**2. 参数列表 :**\n\n- `Vortex Force Amount`: 漩涡力度(向内拖拽粒子) .\n- `Origin Pull Amount`:  漩涡起源拉拽粒子的力度(向点拖拽粒子的力) .\n- `Vortex origin`: 漩涡轴心 .\n- `Vortex Axis`: 漩涡轴 .","x":2796,"y":4640,"width":760,"height":400,"color":"1"},
+		{"id":"57fc7edc658a47ae","type":"text","text":"`Point Force`点牵引力\n\n**一. 基础介绍 :**\n","x":2796,"y":5080,"width":760,"height":120,"color":"1"},
 		{"id":"265fcda7cb6ff887","type":"text","text":"**1.`Sub UV Animation`序列帧采样节点 :**\n\n* 作用 :  当材质球使用了Sub UV ,  则可以通过此节点快速更改UV采样 .\n* 属性 ;\n  * `SubUV Animation Mode ` :  \n    * Linear 按顺序的线性变化\n    * Infinite 无限循环 .\n  * Random Start Frame :  第一帧随机 .\n  * Start Lookup Offset :   开始查找偏移量\n  * Sub UV Loop Count :  生命周期内循环的次数\n","x":700,"y":5919,"width":606,"height":302,"color":"1"},
 		{"id":"69110a62611bf2e1","type":"text","text":"**`材质通信`**","x":380,"y":6191,"width":180,"height":60},
 		{"id":"a16a62e0ee595333","type":"text","text":"**2.`Dynamic Material Parameters`传递粒子属性至材质**\n\n* 作用 :  检测Render输入的材质中`Dynamic Parameter`节点 ,  并实现变量传递 .  \n* 注意 ,  `DynamicMaterialParameter` 属性默认输出RGBA四个属性 ,  每个属性默认为浮点型 ,  在特定声明的情况下接口才能输出矢量数据 .","x":700,"y":6260,"width":606,"height":206,"color":"1"},
@@ -58,13 +57,21 @@
 		{"id":"4f8bf3ff19a38f8a","type":"text","text":"**`Solve Rotational Force and Velocity`旋转力和速度解算器**\n\n- 作用 :\n\t- 专门用来结算物体自身旋转时的力 .","x":1286,"y":4480,"width":545,"height":140,"color":"1"},
 		{"id":"7932b34542d14045","type":"text","text":"`Velocity`速度","x":393,"y":3187,"width":250,"height":60},
 		{"id":"031979b5b829408a","type":"text","text":"**`Inherit Velocity`继承速度**\n\n- 作用 :\n\t- 粒子生成时读取发射器的移动速度 ,  并将此速度加到新生成了粒子上 .\n\n- 参数列表 :\n\t- `Velocity Scale`: 速度倍率.\n\t- `Velocity Limit`: 最大速度限制 .","x":806,"y":3097,"width":570,"height":240,"color":"1"},
-		{"id":"68d4edcab50b63d9","type":"text","text":"`Add Velocity` 添加速度","x":1440,"y":3097,"width":240,"height":63,"color":"1"},
+		{"id":"68d4edcab50b63d9","type":"text","text":"`Add Velocity` 添加速度\n- From Point :\n\t- 从 粒子位置 - 原点 确定速度的方向 .","x":1440,"y":3097,"width":520,"height":240,"color":"1"},
 		{"id":"9f7fac2a7e378262","type":"text","text":"`Apply Initial Force`应用初始化力\n**一. 解释 :**\n**1. 作用 :**\n- 在粒子生成阶段 ,  根据粒子的质量与速度生成物理力 .","x":2040,"y":2400,"width":600,"height":165,"color":"1"},
 		{"id":"7c3b6462b4174356","type":"text","text":"`Acceleration Force`加速力\n**一. 解释 :**\n**1. 作用 :**\n- 施加一个恒定的力 ,  类似重力等 .  若让在Update 则可以实时更改恒定力的方向 .","x":2040,"y":2585,"width":600,"height":237,"color":"1"},
 		{"id":"566c7f7bb2cbc729","type":"text","text":"`Initial Ribbon`初始化条带\n**一. 解释 :**\n**1. 参数 :**\n\n- `Ribbon Width`:  条带宽度 .\n- `Ribbon Twist`:  条带扭转 .\n\n","x":1705,"y":500,"width":553,"height":180,"color":"1"},
 		{"id":"3f9efe2cb938c1e8","type":"text","text":"`Spawn Beam`生成激光\n\n- 必须与`Beam Emitter Setup`配合使用 .","x":1705,"y":720,"width":553,"height":160,"color":"1"},
 		{"id":"008890dcc00fc202","type":"text","text":"`Beam Emitter Setup`激光发射装置\n**一. 功能 :**\n\n**1. 行为 :**\n- 生成均匀的直线排列的粒子 .  必须在Particle Spawn 阶段使用`Spawn Beam`配合 .\n\n**2. 参数 :**\n- `Beam`:  激光开始发射位置 .\n- `Absolute Beam Start`:  绝对开始位置 .\n- `Beam End`:  激光结束位置 .\n- `Absolute Beam End`:  绝对结束位置 .\n- `Use Beam Tangents`:  使用激光切线 .\n\n**二. 使用须知 :**\n\n**1. 注意事项 :**\n- 此模块无法生成粒子 ,  需要搭配其他发射模块使用 .\n\n**2. 连携属性 :**\n- `BeamEnd`:  粒子终点 .\n- `BeamStart`:  粒子起点 .\n","x":2708,"y":-700,"width":499,"height":640,"color":"1"},
-		{"id":"489c3a2313e86066","x":1705,"y":920,"width":553,"height":160,"color":"1","type":"text","text":"`Orient Mesh to Vector`旋转网格至某矢量\n- 将模型的向前方向指向轴朝向其他方向 ."}
+		{"id":"489c3a2313e86066","type":"text","text":"`Orient Mesh to Vector`旋转网格至某矢量\n- 将模型的向前方向指向轴朝向其他方向 .","x":1705,"y":920,"width":553,"height":160,"color":"1"},
+		{"id":"d9b3f6793489ba9a","type":"text","text":"**`Camera Offset`粒子渲染时靠近相机**\n- 作用 :\n\t- 渲染时靠近相机","x":1880,"y":5638,"width":340,"height":142,"color":"1"},
+		{"id":"7c4df335ae21b710","type":"text","text":"`Scale Ribbon Width`缩放线条宽度","x":1880,"y":5516,"width":340,"height":84,"color":"1"},
+		{"id":"9fee909a6f5f1942","type":"text","text":"`Event Handler`事件处理器","x":-120,"y":7760,"width":280,"height":60,"color":"5"},
+		{"id":"a602146dbc09ae6d","type":"text","text":"`Receive Death Event`继承死亡事件\n**一. 节点用处 :**\n\n**1. 功能 :**\n- 继承触发事件粒子的属性 .\n- 会写入`PARTICKLE::Position`, `PARTICLE::RandomNormalizedFloat`, `PARTICLE::Velocity`等事件 .\n","x":321,"y":8240,"width":599,"height":220,"color":"1"},
+		{"id":"6bd459f4b40c2da1","type":"text","text":"`Generate Death Event`触发死亡事件\n**一. 节点用处 :**\n\n**1. 功能 :**\n- 死亡时会将粒子的信息写入`Receive Death Event`, 方便触发事件时调用 .\n\n**2. 参数列表 :**\n- `Event Condition` :  是否触发事件 .","x":320,"y":7635,"width":519,"height":310,"color":"1"},
+		{"id":"2586d2f7fe1a09c5","type":"text","text":"`Wind Force`风力\n","x":2680,"y":2400,"width":520,"height":83,"color":"1"},
+		{"id":"da9c61b739a96649","type":"text","text":"`Spawn particle from Other Emitter`生成粒子根据其他发射器\n>允许一个发射器的粒子在其生命周期内触发另一个发射器的粒子生成。这种机制使得粒子系统能够实现更复杂的视觉效果，如粒子链式反应、粒子间的联动行为等。","x":3260,"y":-700,"width":560,"height":180,"color":"1"},
+		{"id":"2695de77555d54d9","type":"text","text":"`Sample Particle form Other Emitter`采样其他发射器的粒子\n>与Spawn Particle from Other Emitter 链接 ,  可以采样使用其他发射器的粒子 .","x":2305,"y":93,"width":595,"height":127,"color":"1"}
 	],
 	"edges":[
 		{"id":"b7ce33ab1f3109a9","fromNode":"da96c257bf1cd58a","fromSide":"left","toNode":"d15ccbe6db0b0117","toSide":"right"},
@@ -130,6 +137,13 @@
 		{"id":"b17a253d04f838c2","fromNode":"10e8017c02967529","fromSide":"right","toNode":"566c7f7bb2cbc729","toSide":"left"},
 		{"id":"4950a0c635e91efd","fromNode":"10bec2d4d7c1e56f","fromSide":"right","toNode":"008890dcc00fc202","toSide":"left"},
 		{"id":"8c7ce6a0d6871af4","fromNode":"10e8017c02967529","fromSide":"right","toNode":"3f9efe2cb938c1e8","toSide":"left"},
-		{"id":"63f1cddd89d20b36","fromNode":"10e8017c02967529","fromSide":"right","toNode":"489c3a2313e86066","toSide":"left"}
+		{"id":"63f1cddd89d20b36","fromNode":"10e8017c02967529","fromSide":"right","toNode":"489c3a2313e86066","toSide":"left"},
+		{"id":"8d45c311e6e99183","fromNode":"eaaafaa727ad4679","fromSide":"right","toNode":"7c4df335ae21b710","toSide":"left"},
+		{"id":"090621f91d8cd0e7","fromNode":"da96c257bf1cd58a","fromSide":"bottom","toNode":"9fee909a6f5f1942","toSide":"left"},
+		{"id":"d2a40bdc4ce61486","fromNode":"9fee909a6f5f1942","fromSide":"right","toNode":"6bd459f4b40c2da1","toSide":"left"},
+		{"id":"422522fd80ac4c9c","fromNode":"9fee909a6f5f1942","fromSide":"right","toNode":"a602146dbc09ae6d","toSide":"left"},
+		{"id":"ffa46193efeec143","fromNode":"3a35f246a9097a70","fromSide":"right","toNode":"2586d2f7fe1a09c5","toSide":"left"},
+		{"id":"c602c46bab112bba","fromNode":"10bec2d4d7c1e56f","fromSide":"right","toNode":"da9c61b739a96649","toSide":"left"},
+		{"id":"23d22370bbb82b5b","fromNode":"10e8017c02967529","fromSide":"right","toNode":"2695de77555d54d9","toSide":"left"}
 	]
 }

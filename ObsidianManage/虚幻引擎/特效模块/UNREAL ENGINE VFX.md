@@ -93,6 +93,7 @@ tags:
   * `Random Seed`: 随机种子
   * `Sim Target`: 设置粒子运行方式 ,  CPU或GPU .
   * `Fixed Bounds`:  剔除包围盒 .
+  * `Requires Persistent IDs`:  持久储存粒子ID
 
 **2. `Simulation Stages` 仿真阶段 :**
 
@@ -469,7 +470,21 @@ tags:
 **三. UV Setting :**
 
 >UV 坐标的两种设置方式 :  UV坐标完全铺开 与UV坐标隔长度重复 两种 .
+>默认情况下 ,  被拉伸的一边为u方向 ,  宽度方向为v .
 
+**1. 基础UV设置 :**
+>Niagara 自动赋予样条线两个UV集 .  
+
+- `Distribution Mode`:  展开模式 :
+	- `Tiled Over Ribbon Length`:  拼接条带长度 ;  下方Tiling Length 可调整UV长度 .
+	- `Scaled Uniformly`:  按比例均匀缩放 .
+- `Enable Per Particle U Override/Enable Per Particle V Range Override`: 是否启用自定义属性 .
+
+
+**2. Binding 属性说明 :**
+
+- `U0 Override Binding`:  控制每个粒子衔接下一个粒子的顶点的U坐标 .  初始的第一个粒子的非衔接部分为 0  ;
+- `V0 Range Override Binding`: 控制V坐标加减0.5的大小 .
 
 **四. 曲线算法 :**
 
@@ -480,6 +495,8 @@ tags:
 **2. `Automatic`模式细分曲线 :**
 
 - 根据粒子之间的距离自动变换细分段数 .
+
+
 
 #### C 1.11 Mesh 网格体渲染形态
 
@@ -519,7 +536,7 @@ $$
 - 只用一次的变量类型 ,  一个粒子死亡时会被丢弃 ,  粒子创建时又重新计算 .
 
 
-### C 1.13 Niagara Parameter Collection属性参数集
+#### C 1.13 Niagara Parameter Collection属性参数集
 
 **一. 参数集的作用 :**
 
@@ -545,6 +562,75 @@ $$
 **三. 使用须知 :**
 
 - 在虚幻4.26 后 ,  Niagara 参数集与 Material 参数集可以集中控制 .
+
+
+#### C 1.14 Event Handler And Generic Simulation Stage
+
+**一. Stage 自定义逻辑 :**
+
+**1. `Event Handler` 事件处理器**
+
+- **用途** :
+	- **响应待定事件:** 当粒子系统触发预设的事件（如 `Spawn`、`Death`、`Collision` 等）时 ,  执行对应的逻辑 .
+
+- **调用规则 :**
+	- **事件驱动 :**
+		- 仅在事件被触发时执行 ,  例如：`Spawn` 事件在粒子生成时触发一次；`Collision` 事件在每次碰撞时触发 .
+
+	- **被动执行 :**
+		- 逻辑的执行依赖于外部事件的发生。
+
+>使用场景 :
+>    - 粒子遭受撞击后 ,  变换为燃烧状态 .  
+
+>特性 :
+>   - 时间处理器可以接收整个Niagara System发射的事件信息 ,  也就是可以跨发射器调用 .
+>   - 生成的粒子会作为源在运行事件逻辑之后依照规则运行`Particle Update`阶段 .
+>   - 事件仍然会受到发射器的基础设置影响 .
+>   - 只有CPU粒子可以启用事件 ,  切需要启用粒子ID功能 .
+
+- `Event Handler Properties`事件处理程序
+	- `Soure` :  指定需要被相应的事件 .
+	- `Execution Mode` :  执行模式 .
+		- `Every Particle` :  只要此事件被调用 ,  则此发射器所有的粒子均参与事件的运算 .
+		- `Spawned Particles` :  只作用于通过事件发射的粒子 .
+	- `Spawn Number` :  发射数量 .
+
+
+**2. `Generic Simulation Stage` 通用模拟阶段**
+
+- **用途 :**
+	- **插入自定义模拟逻辑**：在粒子模拟的标准流程中插入额外的计算步骤。
+
+- **执行顺序 :**
+	- 在粒子每帧调用后运行 .
+	- **每帧执行**：无论事件是否发生，都会在每帧的模拟流程中运行。
+
+>Reset 是指将某个模拟状态 恢复到初始状态的过程 .  这一操作通常用于重新初始化系统 ,  清除之前运行时积累的数据或状态 恢复到初始状态 的过程 .  
+>	以下是Reset的调用场景 :
+>	- 粒子系统被禁用后再次启用 .
+>	- 通过代码或蓝图显式调用`Reset Simulation`（如`NiagaraComponent->ResetSystem()`），强制重置粒子系统。
+>	- 当关卡重新加载或玩家重生时，相关粒子系统可能被重置以避免残留状态。
+>	- 根据游戏逻辑触发（例如角色死亡后重置技能特效、机关重置时清除环境粒子效果）。
+
+- `Generic Simulation Stage Setting`
+	- `Simulation Stage Name` :  输入当前模拟阶段名字 .
+	- `Enabled Binding`:  输入布尔值 ,  此接口可以从外部动态控制此模拟阶段的调用开关 .
+	- `Iteration Source` :  迭代源 .  可以选择粒子 ,  二维数据等 .
+	- `Num Iterations`:  当前模拟在同一帧内的执行次数 .
+	- `Execute Behavior` :  
+		- `Always`:  无论模拟是否重置 (Reset) ,  该阶段每帧都会执行 .
+		- `Not on Simulation Reset`:  在常规运行中每帧执行 ,  但模拟重置时跳过 .
+		- `on Simulation Reset`:  仅在模拟重置时执行一次, 类似构造函数, 在粒子系统被重新触发时执行一次 
+
+>使用场景 :  
+>    - 在粒子更改状态之后 ,  执行新的粒子燃烧状态下的逻辑 ,  如散发火焰等 .  
+
+
+**二. 使用须知 :**
+
+**1. 数据模拟阶段 :**
+- 注意 ,  每个模拟阶段只能对一个数据源进行迭代 .  也就是只能修改一个组件的内容 .
 
 ### Part 2. Niagara 系统模块库
 

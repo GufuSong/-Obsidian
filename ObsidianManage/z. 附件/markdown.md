@@ -249,18 +249,11 @@ $$
 
 # 第十一部分: html实现其他内容
 
-<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=327623069&bvid=BV1JA411h7Gw&cid=171385214&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 
 
-
-
-
-
-
-
-
-
+![[interactive_lerp.html]]
 
 
 
 [^脚注名字]: 
+
