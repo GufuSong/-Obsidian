@@ -1,0 +1,21 @@
+{
+	"nodes":[
+		{"id":"e844a5d08513b06b","x":-227,"y":-183,"width":147,"height":50,"color":"4","type":"text","text":"客户端"},
+		{"id":"376113201b78db64","x":20,"y":-40,"width":250,"height":60,"type":"text","text":"本地DNS服务器\n"},
+		{"id":"ac8c5ed1a509de9d","x":460,"y":-233,"width":180,"height":50,"type":"text","text":"根域名服务器"},
+		{"id":"1c0a76b1a6ebade4","x":720,"y":-40,"width":167,"height":60,"type":"text","text":"顶级域名服务器"},
+		{"id":"43caf7f9ed7a52d5","x":460,"y":260,"width":190,"height":60,"type":"text","text":"权威域名服务器"},
+		{"id":"c1eedeb033e9c747","x":20,"y":-320,"width":250,"height":60,"type":"text","text":"本地DNS缓存(.etc/hosts)"}
+	],
+	"edges":[
+		{"id":"c73afb9fd89aa547","fromNode":"e844a5d08513b06b","fromSide":"right","toNode":"c1eedeb033e9c747","toSide":"left"},
+		{"id":"da228199a86398be","fromNode":"e844a5d08513b06b","fromSide":"right","toNode":"376113201b78db64","toSide":"left","label":"1"},
+		{"id":"cfc2ba128deb54f3","fromNode":"376113201b78db64","fromSide":"right","toNode":"ac8c5ed1a509de9d","toSide":"left","label":"2"},
+		{"id":"ed7684fd7c50177d","fromNode":"ac8c5ed1a509de9d","fromSide":"bottom","toNode":"376113201b78db64","toSide":"right","label":"3"},
+		{"id":"bee1d9c544399ace","fromNode":"376113201b78db64","fromSide":"right","toNode":"1c0a76b1a6ebade4","toSide":"left","color":"2","label":"4"},
+		{"id":"908f334af0757d6d","fromNode":"1c0a76b1a6ebade4","fromSide":"bottom","toNode":"376113201b78db64","toSide":"right","color":"2","label":"5"},
+		{"id":"69a1ac8994d6f555","fromNode":"376113201b78db64","fromSide":"right","toNode":"43caf7f9ed7a52d5","toSide":"left","label":"6"},
+		{"id":"9ee18a78eb1ebccb","fromNode":"43caf7f9ed7a52d5","fromSide":"top","toNode":"376113201b78db64","toSide":"right","label":"7"},
+		{"id":"1c8982fde336437c","fromNode":"376113201b78db64","fromSide":"bottom","toNode":"e844a5d08513b06b","toSide":"bottom","label":"8"}
+	]
+}

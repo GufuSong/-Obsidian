@@ -1,0 +1,31 @@
+{
+	"nodes":[
+		{"id":"1d366467f61fa74e","x":35,"y":-278,"width":250,"height":60,"type":"text","text":"能干什么?"},
+		{"id":"78ac15eabc9e7812","x":403,"y":-355,"width":250,"height":60,"type":"text","text":"游戏与影视"},
+		{"id":"c9ef05f22ff62089","x":403,"y":-278,"width":250,"height":60,"type":"text","text":"建筑业"},
+		{"id":"f68c28de645a8dbe","x":403,"y":-113,"width":250,"height":60,"type":"text","text":"数据可视化"},
+		{"id":"be1bb6e9fc7f2e8f","x":784,"y":-518,"width":250,"height":60,"type":"text","text":"GUI 图形界面接口"},
+		{"id":"64717e9a649000a4","x":784,"y":-433,"width":250,"height":60,"type":"text","text":"物理模拟 (特效 , 毛发等)"},
+		{"id":"d8bc78dbde120bab","x":784,"y":-355,"width":250,"height":60,"type":"text","text":"二维作画"},
+		{"id":"c16e19af9562743d","x":400,"y":-187,"width":250,"height":60,"type":"text","text":"医疗行业"},
+		{"id":"796b9d796e748bb3","x":-740,"y":169,"width":250,"height":60,"type":"text","text":"计算机图形学"},
+		{"id":"5f6fb5dcf1a909d9","x":-415,"y":80,"width":255,"height":89,"type":"text","text":"第一课 :  计算机图形学的概念"},
+		{"id":"f6ae18a909f4302f","x":35,"y":95,"width":250,"height":60,"type":"text","text":"图形学包含哪些内容 ?"},
+		{"id":"ab2980b1fad00e62","x":400,"y":95,"width":250,"height":60,"type":"text","text":""},
+		{"id":"19636d4f56417d4f","x":403,"y":20,"width":250,"height":60,"type":"text","text":"不包含GPU硬件编程内容"}
+	],
+	"edges":[
+		{"id":"feea461c93127141","fromNode":"796b9d796e748bb3","fromSide":"right","toNode":"5f6fb5dcf1a909d9","toSide":"left"},
+		{"id":"f8178da865430998","fromNode":"5f6fb5dcf1a909d9","fromSide":"right","toNode":"1d366467f61fa74e","toSide":"left"},
+		{"id":"0d9d875759b8b3d4","fromNode":"1d366467f61fa74e","fromSide":"right","toNode":"78ac15eabc9e7812","toSide":"left"},
+		{"id":"5a22b069b6374d29","fromNode":"1d366467f61fa74e","fromSide":"right","toNode":"c9ef05f22ff62089","toSide":"left"},
+		{"id":"359c0344aaecae50","fromNode":"1d366467f61fa74e","fromSide":"right","toNode":"c16e19af9562743d","toSide":"left"},
+		{"id":"e74aabc808ab13b3","fromNode":"1d366467f61fa74e","fromSide":"right","toNode":"f68c28de645a8dbe","toSide":"left"},
+		{"id":"38d70e123de39633","fromNode":"78ac15eabc9e7812","fromSide":"right","toNode":"be1bb6e9fc7f2e8f","toSide":"left"},
+		{"id":"f1a82ea2795b5fd8","fromNode":"78ac15eabc9e7812","fromSide":"right","toNode":"64717e9a649000a4","toSide":"left"},
+		{"id":"b07d2ce7441d6cb6","fromNode":"78ac15eabc9e7812","fromSide":"right","toNode":"d8bc78dbde120bab","toSide":"left"},
+		{"id":"de02a8bbc2becd78","fromNode":"5f6fb5dcf1a909d9","fromSide":"right","toNode":"f6ae18a909f4302f","toSide":"left"},
+		{"id":"6bea4abbedce9834","fromNode":"f6ae18a909f4302f","fromSide":"right","toNode":"19636d4f56417d4f","toSide":"left"},
+		{"id":"edbd89a54191eddd","fromNode":"f6ae18a909f4302f","fromSide":"right","toNode":"ab2980b1fad00e62","toSide":"left"}
+	]
+}
