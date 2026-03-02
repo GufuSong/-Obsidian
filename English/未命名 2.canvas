@@ -1,0 +1,27 @@
+{
+	"nodes":[
+		{"id":"dcec286de46c01f6","type":"text","text":"**English Word Graph**\n\n`Word /wɜːrd/`: \n- have a word with Lili .\n- Word of mouth .\n\n`Graph /ɡræf/`:\n- The BP Graph Of Unreal Engine .","x":-323,"y":-820,"width":383,"height":280,"color":"1"},
+		{"id":"fb5ca692148d47c3","type":"text","text":"`remove /rɪˈmuːv/`\n- **remove** app .","x":180,"y":-1260,"width":381,"height":110,"color":"5"},
+		{"id":"4a630bc61990719e","type":"text","text":"`bring /brɪŋ/`\n`office/ˈɑːfɪs/`\n`drama/ˈdrɑːmə/ \\zh o a ma\\`\n- bring it home .\n- she always **bring** the tea when talks about **office drama** .\n","x":180,"y":-380,"width":420,"height":200,"color":"5"},
+		{"id":"52e73cd7cf9a0f30","type":"text","text":"`server\\ˈsɜːrvər\\`\n`networked\\ˈnetwɜːkt\\`\n- The computers are **networked** to one main **server** .\n- She asked our **server** for another glass  of wine.","x":660,"y":-1285,"width":500,"height":160,"color":"5"},
+		{"id":"e4843d4bc84a4f8b","type":"text","text":"`Wine/waɪn/` \n- Red wine .","x":773,"y":-1500,"width":275,"height":120,"color":"5"},
+		{"id":"e2a7454fa24a972b","type":"text","text":"`Bible /ˈbaɪb(ə)l/`\n`christian /'krɪstʃən/`\n- My grandmother is a **christian** , and she love **bible**.","x":180,"y":-765,"width":444,"height":170,"color":"5"},
+		{"id":"ba81e94f73de0185","type":"text","text":"`media/ˈmiːdiə/`\n- The **media** has a powerful influence on public opinion.","x":1200,"y":-1285,"width":540,"height":160,"color":"5"},
+		{"id":"45e9ea8447940658","type":"text","text":"`Comment`","x":1780,"y":-1285,"width":420,"height":160,"color":"5"},
+		{"id":"4ca3d8441fd6c0a9","type":"text","text":"`phone`","x":180,"y":-40,"width":140,"height":50,"color":"5"},
+		{"id":"2d0a910d22f5a87e","type":"text","text":"`Monday`\n`Tuesday`\n`wednesday`\n`Thursday`\n`Friday`\n`Saturday`\n`Sunday`","x":402,"y":-150,"width":474,"height":221,"color":"5"},
+		{"id":"e9ba9f3a78c385ac","type":"text","text":"`track/træk/`","x":402,"y":180,"width":250,"height":60,"color":"5"}
+	],
+	"edges":[
+		{"id":"49a6c010fadba751","fromNode":"dcec286de46c01f6","fromSide":"right","toNode":"e2a7454fa24a972b","toSide":"left"},
+		{"id":"6a6b10bf8fb221e0","fromNode":"dcec286de46c01f6","fromSide":"right","toNode":"fb5ca692148d47c3","toSide":"left"},
+		{"id":"25f720971bf69aaa","fromNode":"dcec286de46c01f6","fromSide":"right","toNode":"4a630bc61990719e","toSide":"left"},
+		{"id":"f3bdc17a3e255afc","fromNode":"fb5ca692148d47c3","fromSide":"right","toNode":"52e73cd7cf9a0f30","toSide":"left"},
+		{"id":"f23adac9e944dfba","fromNode":"52e73cd7cf9a0f30","fromSide":"top","toNode":"e4843d4bc84a4f8b","toSide":"bottom"},
+		{"id":"9917c845613f5533","fromNode":"52e73cd7cf9a0f30","fromSide":"right","toNode":"ba81e94f73de0185","toSide":"left"},
+		{"id":"81716396546d22e6","fromNode":"ba81e94f73de0185","fromSide":"right","toNode":"45e9ea8447940658","toSide":"left"},
+		{"id":"c09834718c9e44dd","fromNode":"dcec286de46c01f6","fromSide":"right","toNode":"4ca3d8441fd6c0a9","toSide":"left"},
+		{"id":"5e4950cd936b1b01","fromNode":"4ca3d8441fd6c0a9","fromSide":"right","toNode":"2d0a910d22f5a87e","toSide":"left"},
+		{"id":"e72bd12b3fb55a74","fromNode":"4ca3d8441fd6c0a9","fromSide":"right","toNode":"e9ba9f3a78c385ac","toSide":"left"}
+	]
+}
